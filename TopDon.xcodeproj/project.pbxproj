@@ -10,7 +10,21 @@
 	<string>46</string>
 	<key>objects</key>
 	<dict>
-		<key>04A5689586454C0E9C942AE4</key>
+		<key>10DFCF7A1116D80153C892E7</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>728EB32347E14CB7374339DD</string>
+				<string>CBCD46D7FE8E8ACD3FBA4A93</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>728EB32347E14CB7374339DD</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -19,9 +33,9 @@
 			<key>lastKnownFileType</key>
 			<string>text.xcconfig</string>
 			<key>name</key>
-			<string>Pods.xcconfig</string>
+			<string>Pods.debug.xcconfig</string>
 			<key>path</key>
-			<string>Pods/Pods.xcconfig</string>
+			<string>Pods/Target Support Files/Pods/Pods.debug.xcconfig</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -44,7 +58,7 @@
 			<key>shellPath</key>
 			<string>/bin/sh</string>
 			<key>shellScript</key>
-			<string>"${SRCROOT}/Pods/Pods-resources.sh"
+			<string>"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh"
 </string>
 			<key>showEnvVarsInLog</key>
 			<string>0</string>
@@ -78,6 +92,21 @@ fi
 </string>
 			<key>showEnvVarsInLog</key>
 			<string>0</string>
+		</dict>
+		<key>CBCD46D7FE8E8ACD3FBA4A93</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods.release.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods/Pods.release.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>D1D066D07D37495E8C9EB05D</key>
 		<dict>
@@ -160,7 +189,7 @@ fi
 				<string>ECF74F9A19D83EF80035E28B</string>
 				<string>ECF74F9319D83EF80035E28B</string>
 				<string>ECF74F9219D83EF80035E28B</string>
-				<string>04A5689586454C0E9C942AE4</string>
+				<string>10DFCF7A1116D80153C892E7</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -787,7 +816,7 @@ fi
 		<key>ECF74FC419D83EF80035E28B</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>04A5689586454C0E9C942AE4</string>
+			<string>728EB32347E14CB7374339DD</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
@@ -815,7 +844,7 @@ fi
 		<key>ECF74FC519D83EF80035E28B</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>04A5689586454C0E9C942AE4</string>
+			<string>CBCD46D7FE8E8ACD3FBA4A93</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
