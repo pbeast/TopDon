@@ -56,7 +56,7 @@
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     locationManager.delegate = self;
     [locationManager startUpdatingLocation];
-    
+        
     currentLocation = [[CLLocation alloc] initWithLatitude:0 longitude:0];
     
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(foundTap:)];
@@ -72,7 +72,7 @@
 
 -(IBAction)foundTap:(UITapGestureRecognizer *)recognizer
 {
-    if (n >= 5)
+    if (n >= 1)
         return;
     
     n++;
@@ -116,11 +116,16 @@
 //    
 //    NSDictionary *launchOptions = @{MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeD};
 //    [location.mapItem openInMapsWithLaunchOptions:launchOptions];
+    
+    
+    [self performSegueWithIdentifier:@"fuelStationSegue" sender:self];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     self.navigationController.navigationBarHidden = YES;
+    
+    
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
