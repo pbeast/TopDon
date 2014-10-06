@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 #import "FilterView.h"
+#import "GasStation.h"
+#import "FuelStationViewController.h"
 
 @interface ViewController ()
 {
@@ -81,17 +83,17 @@
     
     CLLocationCoordinate2D tapPoint = [self.mapView convertPoint:point toCoordinateFromView:self.mapView];
     
-    MKPointAnnotation *point1 = [[MKPointAnnotation alloc] init];
-    point1.coordinate = tapPoint;
-    point1.title = [NSString stringWithFormat:@"Заправка №%d", n];
-    point1.subtitle = @"ТОП ДОН";
+    GasStation *gasStation = [[GasStation alloc] init];
+    gasStation.coordinate = tapPoint;
+    gasStation.title = [NSString stringWithFormat:@"Заправка №%d", n];
+    gasStation.subtitle = @"ТОП ДОН";
     
-    [self.mapView addAnnotation:point1];
+    [self.mapView addAnnotation:gasStation];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
-    static NSString *identifier = @"FuelLocation";
-    if ([annotation isKindOfClass:[MKPointAnnotation class]]) {
+    static NSString *identifier = @"GasStation";
+    if ([annotation isKindOfClass:[GasStation class]]) {
         
         MKAnnotationView *annotationView = (MKAnnotationView *) [_mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
         if (annotationView == nil) {
@@ -111,14 +113,15 @@
     return nil;
 }
 
-- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
-//    MyLocation *location = (MyLocation*)view.annotation;
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+    GasStation *gasStation = (GasStation*)view.annotation;
 //    
 //    NSDictionary *launchOptions = @{MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeD};
 //    [location.mapItem openInMapsWithLaunchOptions:launchOptions];
     
     
-    [self performSegueWithIdentifier:@"fuelStationSegue" sender:self];
+    [self performSegueWithIdentifier:@"fuelStationSegue" sender:gasStation];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -126,6 +129,15 @@
     self.navigationController.navigationBarHidden = YES;
     
     
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    FuelStationViewController *fsvc = [segue destinationViewController];
+    GasStation * gasStation = sender;
+    
+    [fsvc setTitle:gasStation.title];
+    [fsvc setGasStation:sender];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations

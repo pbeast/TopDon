@@ -7,9 +7,12 @@
 //
 
 #import "FuelStationViewController.h"
+#import "CMMapLauncher.h"
 
 @interface FuelStationViewController ()
-
+{
+    NSMutableArray *navigators;
+}
 @end
 
 @implementation FuelStationViewController
@@ -22,11 +25,40 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    self.stationMapView.delegate = self;
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     self.navigationController.navigationBarHidden = NO;
+    
+    [self.stationMapView setCenterCoordinate:_gasStation .coordinate];
+    MKCoordinateRegion region =
+    MKCoordinateRegionMakeWithDistance(_gasStation .coordinate, 100, 100);
+    [self.stationMapView setRegion:region animated:YES];
+    
+    [self.stationMapView addAnnotation:_gasStation];
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
+    static NSString *identifier = @"GasStation";
+    if ([annotation isKindOfClass:[GasStation class]]) {
+        
+        MKAnnotationView *annotationView = (MKAnnotationView *) [self.stationMapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+        if (annotationView == nil) {
+            annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+            annotationView.enabled = YES;
+            annotationView.canShowCallout = YES;
+            annotationView.image = [UIImage imageNamed:@"fuelPin.png"];
+        } else {
+            annotationView.annotation = annotation;
+        }
+        
+        return annotationView;
+    }
+    
+    return nil;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,11 +69,48 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 5;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
+}
+
+- (IBAction)navigateToStation:(id)sender
+{
+    UIActionSheet * as = [[UIActionSheet alloc] initWithTitle:@"Какой программой воспользоваться?" delegate:self cancelButtonTitle:@"Отмена" destructiveButtonTitle:nil otherButtonTitles:nil];
+
+    navigators = [[NSMutableArray alloc] init];
+    if ([CMMapLauncher isMapAppInstalled:CMMapAppAppleMaps]){
+        [navigators addObject:[NSNumber numberWithInt:CMMapAppAppleMaps]];
+        [as addButtonWithTitle:@"Карты Apple"];
+    }
+    
+    if ([CMMapLauncher isMapAppInstalled:CMMapAppGoogleMaps]){
+        [navigators addObject:[NSNumber numberWithInt:CMMapAppGoogleMaps]];
+        [as addButtonWithTitle:@"Карты Google"];
+    }
+    
+    if ([CMMapLauncher isMapAppInstalled:CMMapAppWaze]){
+        [navigators addObject:[NSNumber numberWithInt:CMMapAppWaze]];
+        [as addButtonWithTitle:@"Waze"];
+    }
+    
+    if ([CMMapLauncher isMapAppInstalled:CMMapAppYandex]){
+        [navigators addObject:[NSNumber numberWithInt:CMMapAppYandex]];
+        [as addButtonWithTitle:@"Яндекс Навигатор"];
+    }
+    
+    if ([navigators count] == 0)
+    {
+        
+    }
+    else if ([navigators count] == 1)
+    {
+        [CMMapLauncher launchMapApp:[[navigators objectAtIndex:0] integerValue] forDirectionsTo:[CMMapPoint mapPointWithName:self.gasStation.title coordinate:self.gasStation.coordinate]];
+    }
+    else
+      [as showInView:self.view];
 }
 
 /*
@@ -97,5 +166,6 @@
     // Pass the selected object to the new view controller.
 }
 */
+
 
 @end

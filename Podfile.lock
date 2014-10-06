@@ -1,10 +1,13 @@
 PODS:
+  - CMMapLauncher (1.1.0)
   - MBProgressHUD (0.9)
 
 DEPENDENCIES:
+  - CMMapLauncher
   - MBProgressHUD (~> 0.8)
 
 SPEC CHECKSUMS:
+  CMMapLauncher: 4b95899cc39bd14dfa3e8525470e34cb8edbb028
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
 
 COCOAPODS: 0.34.1
