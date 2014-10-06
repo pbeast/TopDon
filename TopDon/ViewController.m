@@ -45,7 +45,7 @@
     
     pullRightView.layer.cornerRadius = 6;
     
-    pullRightView.handleView.backgroundColor = [UIColor redColor];
+    pullRightView.handleView.backgroundColor = [UIColor clearColor];
     pullRightView.handleView.frame = CGRectMake(0, panelHeight / 2 - 25, 15, 50);
     
     pullRightView.delegate = self;
