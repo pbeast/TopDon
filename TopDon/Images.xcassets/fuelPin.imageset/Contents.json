@@ -3,11 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "fuelPin.png"
+      "filename" : "gas_station.png.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "gas_station@2x.png"
     }
   ],
   "info" : {

@@ -7,7 +7,6 @@
 //
 
 #import "ViewController.h"
-#import "FilterView.h"
 #import "GasStation.h"
 #import "FuelStationViewController.h"
 
@@ -51,6 +50,7 @@
     pullRightView.handleView.frame = CGRectMake(0, panelHeight / 2 - 25, 15, 50);
     
     pullRightView.delegate = self;
+    pullRightView.filterDelegate = self;
     
     [self.view addSubview:pullRightView];
 
@@ -85,8 +85,8 @@
     
     GasStation *gasStation = [[GasStation alloc] init];
     gasStation.coordinate = tapPoint;
-    gasStation.title = [NSString stringWithFormat:@"Заправка №%d", n];
-    gasStation.subtitle = @"ТОП ДОН";
+    gasStation.title = [NSString stringWithFormat:@"Донбайнефтегаз ООО"];
+    //gasStation.subtitle = @"ТОП ДОН";
     
     [self.mapView addAnnotation:gasStation];
 }
@@ -169,6 +169,8 @@
     {
         [self.searchField resignFirstResponder];
     }
+    
+   // [pullRightView setOpened:NO animated:YES];
  }
 
 
@@ -189,4 +191,14 @@
     MKCoordinateRegionMakeWithDistance(currentLocation.coordinate, 1000, 1000);
     [self.mapView setRegion:region animated:YES];
 }
+
+-(void)shouldShow:(BOOL)show fuelWithId:(int)fuelId
+{
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"" message:[NSString stringWithFormat:@"Should %d show fuel with id %d", show, fuelId] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    
+    [av show];
+    
+  //  [pullRightView setOpened:NO animated:YES];
+}
+
 @end

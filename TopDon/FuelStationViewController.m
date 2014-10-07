@@ -35,7 +35,7 @@
     
     [self.stationMapView setCenterCoordinate:_gasStation .coordinate];
     MKCoordinateRegion region =
-    MKCoordinateRegionMakeWithDistance(_gasStation .coordinate, 100, 100);
+    MKCoordinateRegionMakeWithDistance(_gasStation .coordinate, 500, 500);
     [self.stationMapView setRegion:region animated:YES];
     
     [self.stationMapView addAnnotation:_gasStation];

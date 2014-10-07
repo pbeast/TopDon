@@ -35,4 +35,13 @@
 }
 */
 
+- (IBAction)fuelTagged:(id)sender {
+    
+    UIButton* btn = sender;
+    BOOL shouldShow = ![btn isSelected];
+    [btn setSelected:shouldShow];
+    
+    if (_filterDelegate != nil)
+        [_filterDelegate shouldShow:shouldShow fuelWithId:[btn tag]];
+}
 @end

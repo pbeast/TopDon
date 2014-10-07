@@ -14,20 +14,150 @@
                     <rect key="frame" x="0.0" y="0.0" width="200" height="350"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QOA-Tm-usa">
-                    <rect key="frame" x="12" y="12" width="34" height="25"/>
+                <button opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QOA-Tm-usa">
+                    <rect key="frame" x="32" y="14" width="29" height="29"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="CenterMap">
+                    <state key="normal" image="diesel">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <state key="selected" image="selected_diesel"/>
+                    <connections>
+                        <action selector="fuelTagged:" destination="iN0-l3-epB" eventType="touchUpInside" id="54V-fQ-hcK"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="7" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LV9-hq-o2A">
+                    <rect key="frame" x="32" y="51" width="29" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="winter_diesel">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="selected_winter_diesel"/>
+                    <connections>
+                        <action selector="fuelTagged:" destination="iN0-l3-epB" eventType="touchUpInside" id="9GS-Xr-DnJ"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="99F-V0-nzE">
+                    <rect key="frame" x="32" y="88" width="29" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="fuel_80">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="selected_fuel_80"/>
+                    <connections>
+                        <action selector="fuelTagged:" destination="iN0-l3-epB" eventType="touchUpInside" id="IDc-Ad-gHb"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iEy-4C-A2o">
+                    <rect key="frame" x="32" y="125" width="29" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="fuel_92">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="selected_fuel_92"/>
+                    <connections>
+                        <action selector="fuelTagged:" destination="iN0-l3-epB" eventType="touchUpInside" id="EpV-gS-fbF"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="apn-GJ-5ye">
+                    <rect key="frame" x="32" y="162" width="29" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="fuel_95">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="selected_fuel_95"/>
+                    <connections>
+                        <action selector="fuelTagged:" destination="iN0-l3-epB" eventType="touchUpInside" id="lea-uX-WLY"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HHC-Ey-JWr">
+                    <rect key="frame" x="32" y="199" width="29" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="fuel_98">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="selected_fuel_98"/>
+                    <connections>
+                        <action selector="fuelTagged:" destination="iN0-l3-epB" eventType="touchUpInside" id="ijo-6j-pOc"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFT-cU-2cC">
+                    <rect key="frame" x="32" y="236" width="29" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="fuel_102">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="selected_fuel_102"/>
+                    <connections>
+                        <action selector="fuelTagged:" destination="iN0-l3-epB" eventType="touchUpInside" id="ppl-dX-U6j"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="9" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKs-dQ-fhA">
+                    <rect key="frame" x="32" y="273" width="29" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="methane">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="selected_methane"/>
+                    <connections>
+                        <action selector="fuelTagged:" destination="iN0-l3-epB" eventType="touchUpInside" id="PDE-dQ-gte"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="8" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IGE-Of-gaP">
+                    <rect key="frame" x="32" y="310" width="29" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="propane_butane">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="selected_propane_butane"/>
+                    <connections>
+                        <action selector="fuelTagged:" destination="iN0-l3-epB" eventType="touchUpInside" id="vi6-QU-JKR"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RsI-54-9yJ">
+                    <rect key="frame" x="86" y="14" width="29" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="tire">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="selected_tire"/>
                 </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outletCollection property="fuelButtons" destination="QOA-Tm-usa" id="mZp-UN-rAo"/>
+                <outletCollection property="fuelButtons" destination="LV9-hq-o2A" id="dbe-ex-WJg"/>
+                <outletCollection property="fuelButtons" destination="99F-V0-nzE" id="TUG-Ag-IgU"/>
+                <outletCollection property="fuelButtons" destination="iEy-4C-A2o" id="cbP-od-IJa"/>
+                <outletCollection property="fuelButtons" destination="apn-GJ-5ye" id="Ctr-9d-FVR"/>
+                <outletCollection property="fuelButtons" destination="HHC-Ey-JWr" id="6Wy-0f-Ltj"/>
+                <outletCollection property="fuelButtons" destination="QFT-cU-2cC" id="S2o-ck-GWR"/>
+                <outletCollection property="fuelButtons" destination="MKs-dQ-fhA" id="bUn-kx-m4H"/>
+                <outletCollection property="fuelButtons" destination="IGE-Of-gaP" id="iQ9-y1-Avw"/>
+            </connections>
         </view>
     </objects>
     <resources>
-        <image name="CenterMap" width="25" height="25"/>
+        <image name="diesel" width="29" height="29"/>
+        <image name="fuel_102" width="29" height="29"/>
+        <image name="fuel_80" width="29" height="29"/>
+        <image name="fuel_92" width="29" height="29"/>
+        <image name="fuel_95" width="29" height="29"/>
+        <image name="fuel_98" width="29" height="29"/>
+        <image name="methane" width="29" height="29"/>
+        <image name="propane_butane" width="29" height="29"/>
+        <image name="selected_diesel" width="29" height="29"/>
+        <image name="selected_fuel_102" width="29" height="29"/>
+        <image name="selected_fuel_80" width="29" height="29"/>
+        <image name="selected_fuel_92" width="29" height="29"/>
+        <image name="selected_fuel_95" width="29" height="29"/>
+        <image name="selected_fuel_98" width="29" height="29"/>
+        <image name="selected_methane" width="29" height="29"/>
+        <image name="selected_propane_butane" width="29" height="29"/>
+        <image name="selected_tire" width="29" height="29"/>
+        <image name="selected_winter_diesel" width="29" height="29"/>
         <image name="sliderBack" width="200" height="350"/>
+        <image name="tire" width="29" height="29"/>
+        <image name="winter_diesel" width="29" height="29"/>
     </resources>
 </document>

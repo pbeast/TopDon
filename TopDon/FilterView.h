@@ -8,6 +8,20 @@
 
 #import "PullableView.h"
 
-@interface FilterView : PullableView
+@protocol FilterViewDelegate<NSObject>
 
+-(void)shouldShow:(BOOL)show fuelWithId:(int)fuelId;
+
+@end
+
+@interface FilterView : PullableView
+{
+    
+}
+
+@property (readwrite,assign) id<FilterViewDelegate> filterDelegate;
+
+- (IBAction)fuelTagged:(id)sender;
+
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *fuelButtons;
 @end

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="5Cz-pm-GIz">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
@@ -110,15 +109,15 @@
                             </tableViewSection>
                             <tableViewSection footerTitle=" " id="zGn-bX-X3c">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="112" id="EAR-yZ-ArS">
-                                        <rect key="frame" x="0.0" y="204" width="320" height="112"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="56" id="EAR-yZ-ArS">
+                                        <rect key="frame" x="0.0" y="182" width="320" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EAR-yZ-ArS" id="W9n-da-eTl">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="111"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDD-MP-9n8">
-                                                    <rect key="frame" x="62" y="14" width="197" height="30"/>
+                                                    <rect key="frame" x="62" y="0.0" width="197" height="30"/>
                                                     <state key="normal" title="Проложить Маршрут">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -134,7 +133,7 @@
                             <tableViewSection headerTitle="Доступное Топливо" footerTitle=" " id="J1g-kK-lAO">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="103" id="9sq-9p-RPu">
-                                        <rect key="frame" x="0.0" y="316" width="320" height="103"/>
+                                        <rect key="frame" x="0.0" y="282" width="320" height="103"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9sq-9p-RPu" id="K2C-jv-WYT">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="102"/>
@@ -146,8 +145,10 @@
                             <tableViewSection headerTitle="Доступные Сервисы" footerTitle=" " id="ift-se-hwS">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="103" id="8hF-YG-tM8">
+                                        <rect key="frame" x="0.0" y="429" width="320" height="103"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8hF-YG-tM8" id="Tjt-A0-x39">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="102"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -156,8 +157,10 @@
                             <tableViewSection headerTitle="Другие Сервисы" id="zmu-Cp-gJS">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="103" id="yRO-5P-6ZO">
+                                        <rect key="frame" x="0.0" y="576" width="320" height="103"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yRO-5P-6ZO" id="cLc-eG-OeU">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="102"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>

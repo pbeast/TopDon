@@ -3,12 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "define_location.png"
+      "filename" : "location.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "define_location@2x.png"
+      "filename" : "location@2x.png"
     }
   ],
   "info" : {

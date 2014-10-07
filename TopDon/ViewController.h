@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PullableView.h"
+#import "FilterView.h"
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 
-@interface ViewController : UIViewController<PullableViewDelegate, MKMapViewDelegate, CLLocationManagerDelegate>
+@interface ViewController : UIViewController<PullableViewDelegate, MKMapViewDelegate, CLLocationManagerDelegate, FilterViewDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 - (IBAction)centerMap:(id)sender;
