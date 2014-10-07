@@ -29,7 +29,7 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="9iY-f8-wxa"/>
                                 </connections>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1HR-ra-yir">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1HR-ra-yir">
                                 <rect key="frame" x="20" y="523" width="25" height="25"/>
                                 <state key="normal" image="CenterMap">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -245,7 +245,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="CenterMap" width="25" height="25"/>
+        <image name="CenterMap" width="29" height="29"/>
         <image name="header" width="320" height="56"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

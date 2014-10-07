@@ -14,6 +14,83 @@
                     <rect key="frame" x="0.0" y="0.0" width="200" height="350"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
+                <button opaque="NO" tag="12" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xJC-mT-9RS">
+                    <rect key="frame" x="140" y="236" width="29" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="automated_ teller_ machine">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="selected_automated_ teller_ machine"/>
+                    <connections>
+                        <action selector="additionalServiceTagged:" destination="iN0-l3-epB" eventType="touchUpInside" id="WaD-B5-WFh"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="13" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hov-mf-wmh">
+                    <rect key="frame" x="140" y="268" width="29" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="tire">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="selected_tire"/>
+                    <connections>
+                        <action selector="additionalServiceTagged:" destination="iN0-l3-epB" eventType="touchUpInside" id="9lZ-5o-98E"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="14" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d1f-yS-vrh">
+                    <rect key="frame" x="140" y="305" width="29" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="wi_fi">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="selected_wi_fi"/>
+                    <connections>
+                        <action selector="additionalServiceTagged:" destination="iN0-l3-epB" eventType="touchUpInside" id="xy6-G7-C9s"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="11" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RCR-0W-hPg">
+                    <rect key="frame" x="140" y="199" width="29" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="shower">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="selected_shower"/>
+                    <connections>
+                        <action selector="additionalServiceTagged:" destination="iN0-l3-epB" eventType="touchUpInside" id="XaB-E0-hIw"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="10" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lBX-qX-Nci">
+                    <rect key="frame" x="140" y="162" width="29" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="cafe">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="selected_cafe"/>
+                    <connections>
+                        <action selector="additionalServiceTagged:" destination="iN0-l3-epB" eventType="touchUpInside" id="pqy-tx-b8Y"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D35-5d-8ss">
+                    <rect key="frame" x="86" y="14" width="29" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="truck_repair">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="selected_truck_repair"/>
+                    <connections>
+                        <action selector="serviceTagged:" destination="iN0-l3-epB" eventType="touchUpInside" id="qbx-Qc-Vfg"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jpj-rf-xiU">
+                    <rect key="frame" x="86" y="51" width="29" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="repair">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="selected_repair"/>
+                    <connections>
+                        <action selector="serviceTagged:" destination="iN0-l3-epB" eventType="touchUpInside" id="CwI-zS-A6a"/>
+                    </connections>
+                </button>
                 <button opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QOA-Tm-usa">
                     <rect key="frame" x="32" y="14" width="29" height="29"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -113,13 +190,82 @@
                         <action selector="fuelTagged:" destination="iN0-l3-epB" eventType="touchUpInside" id="vi6-QU-JKR"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RsI-54-9yJ">
-                    <rect key="frame" x="86" y="14" width="29" height="29"/>
+                <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RsI-54-9yJ">
+                    <rect key="frame" x="86" y="88" width="29" height="29"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" image="tire">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <state key="selected" image="selected_tire"/>
+                    <connections>
+                        <action selector="serviceTagged:" destination="iN0-l3-epB" eventType="touchUpInside" id="tQk-C5-sIS"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PjU-ML-sCG">
+                    <rect key="frame" x="86" y="125" width="29" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="car_wash">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="selected_car_wash"/>
+                    <connections>
+                        <action selector="serviceTagged:" destination="iN0-l3-epB" eventType="touchUpInside" id="lz2-0Y-WuC"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZpC-FP-lNL">
+                    <rect key="frame" x="86" y="162" width="29" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="maintenance">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="selected_maintenance"/>
+                    <connections>
+                        <action selector="serviceTagged:" destination="iN0-l3-epB" eventType="touchUpInside" id="2Mg-na-t7Z"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8pi-3V-4No">
+                    <rect key="frame" x="140" y="14" width="29" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="market">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="selected_market"/>
+                    <connections>
+                        <action selector="additionalServiceTagged:" destination="iN0-l3-epB" eventType="touchUpInside" id="sOZ-0k-C4V"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="7" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lSf-1I-opM">
+                    <rect key="frame" x="140" y="51" width="29" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="WC">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="selected_WC"/>
+                    <connections>
+                        <action selector="additionalServiceTagged:" destination="iN0-l3-epB" eventType="touchUpInside" id="PwO-d5-CMi"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="8" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yZC-Y6-FsZ">
+                    <rect key="frame" x="140" y="88" width="29" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="hotel">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="selected_hotel"/>
+                    <connections>
+                        <action selector="additionalServiceTagged:" destination="iN0-l3-epB" eventType="touchUpInside" id="kPv-KF-Qyh"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="9" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pNh-i4-FPy">
+                    <rect key="frame" x="140" y="125" width="29" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="parking">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="selected_parking"/>
+                    <connections>
+                        <action selector="additionalServiceTagged:" destination="iN0-l3-epB" eventType="touchUpInside" id="Ae4-Kv-FXO"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -138,26 +284,50 @@
         </view>
     </objects>
     <resources>
+        <image name="WC" width="29" height="29"/>
+        <image name="automated_ teller_ machine" width="29" height="29"/>
+        <image name="cafe" width="29" height="29"/>
+        <image name="car_wash" width="29" height="29"/>
         <image name="diesel" width="29" height="29"/>
         <image name="fuel_102" width="29" height="29"/>
         <image name="fuel_80" width="29" height="29"/>
         <image name="fuel_92" width="29" height="29"/>
         <image name="fuel_95" width="29" height="29"/>
         <image name="fuel_98" width="29" height="29"/>
+        <image name="hotel" width="29" height="29"/>
+        <image name="maintenance" width="29" height="29"/>
+        <image name="market" width="29" height="29"/>
         <image name="methane" width="29" height="29"/>
+        <image name="parking" width="29" height="29"/>
         <image name="propane_butane" width="29" height="29"/>
+        <image name="repair" width="29" height="29"/>
+        <image name="selected_WC" width="29" height="29"/>
+        <image name="selected_automated_ teller_ machine" width="29" height="29"/>
+        <image name="selected_cafe" width="29" height="29"/>
+        <image name="selected_car_wash" width="29" height="29"/>
         <image name="selected_diesel" width="29" height="29"/>
         <image name="selected_fuel_102" width="29" height="29"/>
         <image name="selected_fuel_80" width="29" height="29"/>
         <image name="selected_fuel_92" width="29" height="29"/>
         <image name="selected_fuel_95" width="29" height="29"/>
         <image name="selected_fuel_98" width="29" height="29"/>
+        <image name="selected_hotel" width="29" height="29"/>
+        <image name="selected_maintenance" width="29" height="29"/>
+        <image name="selected_market" width="29" height="29"/>
         <image name="selected_methane" width="29" height="29"/>
+        <image name="selected_parking" width="29" height="29"/>
         <image name="selected_propane_butane" width="29" height="29"/>
+        <image name="selected_repair" width="29" height="29"/>
+        <image name="selected_shower" width="29" height="29"/>
         <image name="selected_tire" width="29" height="29"/>
+        <image name="selected_truck_repair" width="29" height="29"/>
+        <image name="selected_wi_fi" width="29" height="29"/>
         <image name="selected_winter_diesel" width="29" height="29"/>
+        <image name="shower" width="29" height="29"/>
         <image name="sliderBack" width="200" height="350"/>
         <image name="tire" width="29" height="29"/>
+        <image name="truck_repair" width="29" height="29"/>
+        <image name="wi_fi" width="29" height="29"/>
         <image name="winter_diesel" width="29" height="29"/>
     </resources>
 </document>

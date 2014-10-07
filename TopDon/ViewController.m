@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "GasStation.h"
 #import "FuelStationViewController.h"
+#import "AFNetworking.h"
 
 @interface ViewController ()
 {
@@ -17,6 +18,8 @@
     CLLocation *currentLocation;
     
     int n;
+    
+    NSDictionary* foundGasStations;
 }
 @end
 
@@ -38,7 +41,7 @@
     
     pullRightView = [[[NSBundle mainBundle] loadNibNamed:@"FilterView" owner:self options:nil] objectAtIndex:0];
 //    pullRightView.backgroundColor = [UIColor darkGrayColor];
-    pullRightView.openedCenter = CGPointMake(self.view.bounds.size.width - 94, verticalOffset + h / 2.0);
+    pullRightView.openedCenter = CGPointMake(self.view.bounds.size.width - 85, verticalOffset + h / 2.0);
     pullRightView.closedCenter = CGPointMake(self.view.bounds.size.width + 85, verticalOffset + h / 2.0);
     pullRightView.center = pullRightView.closedCenter;
     pullRightView.animate = YES;
@@ -61,19 +64,26 @@
         
     currentLocation = [[CLLocation alloc] initWithLatitude:0 longitude:0];
     
-    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(foundTap:)];
+    UILongPressGestureRecognizer *tapRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(foundTap:)];
     
     tapRecognizer.numberOfTapsRequired = 1;
     
     tapRecognizer.numberOfTouchesRequired = 1;
+    
+//    tapRecognizer.minimumPressDuration = 1;
     
     [self.mapView addGestureRecognizer:tapRecognizer];
     
     n = 0;
 }
 
--(IBAction)foundTap:(UITapGestureRecognizer *)recognizer
+-(IBAction)foundTap:(UILongPressGestureRecognizer *)recognizer
 {
+    if (recognizer.state != UIGestureRecognizerStateBegan)
+    {
+        return;
+    }
+    
     if (n >= 1)
         return;
     
@@ -190,6 +200,40 @@
     MKCoordinateRegion region =
     MKCoordinateRegionMakeWithDistance(currentLocation.coordinate, 1000, 1000);
     [self.mapView setRegion:region animated:YES];
+    
+    [self loadStationsAround:currentLocation];
+}
+
+-(void)loadStationsAround:(CLLocation *)location
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    NSString* serverUrl = @"http://localhost:10108/API/TradePointMaintanance.asmx/LocateAround";
+    
+    NSDictionary *parameters = @{
+                                 @"longitude" : [NSString stringWithFormat:@"%f", location.coordinate.longitude],
+                                 @"latitude" : [NSString stringWithFormat:@"%f", location.coordinate.latitude]
+                                 };
+
+    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:serverUrl parameters:parameters error:nil];
+    
+    AFHTTPRequestOperation *operation = [manager HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject)
+                                         {
+                                             foundGasStations = (NSDictionary*)responseObject;
+                                         }
+                                        failure:^(AFHTTPRequestOperation *operation, NSError *error)
+                                         {
+                                             NSLog(@"Error: %@", error);
+                                             NSLog(@"Response: %@", operation.responseString);
+                                             
+                                             UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"TOPDON" message:[NSString stringWithFormat:@"%@", error] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                             [av show];
+                                         }];
+    
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [manager.operationQueue addOperation:operation];
+
 }
 
 -(void)shouldShow:(BOOL)show fuelWithId:(int)fuelId
@@ -197,8 +241,14 @@
     UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"" message:[NSString stringWithFormat:@"Should %d show fuel with id %d", show, fuelId] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     
     [av show];
+}
+
+-(void)shouldShow:(BOOL)show serviceWithId:(int)fuelId{
     
-  //  [pullRightView setOpened:NO animated:YES];
+}
+
+-(void)shouldShow:(BOOL)show extServiceWithId:(int)fuelId{
+    
 }
 
 @end

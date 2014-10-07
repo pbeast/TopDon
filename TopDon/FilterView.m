@@ -44,4 +44,22 @@
     if (_filterDelegate != nil)
         [_filterDelegate shouldShow:shouldShow fuelWithId:[btn tag]];
 }
+
+- (IBAction)serviceTagged:(id)sender {
+    UIButton* btn = sender;
+    BOOL shouldShow = ![btn isSelected];
+    [btn setSelected:shouldShow];
+    
+    if (_filterDelegate != nil)
+        [_filterDelegate shouldShow:shouldShow serviceWithId:[btn tag]];
+}
+
+- (IBAction)additionalServiceTagged:(id)sender {
+    UIButton* btn = sender;
+    BOOL shouldShow = ![btn isSelected];
+    [btn setSelected:shouldShow];
+    
+    if (_filterDelegate != nil)
+        [_filterDelegate shouldShow:shouldShow extServiceWithId:[btn tag]];
+}
 @end

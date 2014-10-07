@@ -11,6 +11,8 @@
 @protocol FilterViewDelegate<NSObject>
 
 -(void)shouldShow:(BOOL)show fuelWithId:(int)fuelId;
+-(void)shouldShow:(BOOL)show serviceWithId:(int)fuelId;
+-(void)shouldShow:(BOOL)show extServiceWithId:(int)fuelId;
 
 @end
 
@@ -22,6 +24,10 @@
 @property (readwrite,assign) id<FilterViewDelegate> filterDelegate;
 
 - (IBAction)fuelTagged:(id)sender;
+- (IBAction)serviceTagged:(id)sender;
+- (IBAction)additionalServiceTagged:(id)sender;
+
+
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *fuelButtons;
 @end
