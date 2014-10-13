@@ -16,4 +16,5 @@
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 - (IBAction)centerMap:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *searchField;
+@property (weak, nonatomic) IBOutlet UIButton *centerMapBtn;
 @end

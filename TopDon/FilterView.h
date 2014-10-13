@@ -11,8 +11,8 @@
 @protocol FilterViewDelegate<NSObject>
 
 -(void)shouldShow:(BOOL)show fuelWithId:(int)fuelId;
--(void)shouldShow:(BOOL)show serviceWithId:(int)fuelId;
--(void)shouldShow:(BOOL)show extServiceWithId:(int)fuelId;
+-(void)shouldShow:(BOOL)show serviceWithId:(int)serviceId;
+-(void)shouldShow:(BOOL)show extServiceWithId:(int)extServiceId;
 
 @end
 

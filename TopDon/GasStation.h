@@ -10,4 +10,6 @@
 
 @interface GasStation : MKPointAnnotation
 
+-(id)initWithServerObject:(NSDictionary*)object;
+
 @end
