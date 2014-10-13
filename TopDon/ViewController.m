@@ -80,11 +80,11 @@
         
     currentLocation = [[CLLocation alloc] initWithLatitude:0 longitude:0];
   
-//    tapRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(foundTap:)];
+    tapRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(foundTap:)];
 //    tapRecognizer.numberOfTapsRequired = 1;
 //    tapRecognizer.numberOfTouchesRequired = 1;
-//    tapRecognizer.minimumPressDuration = 1;
-//    [self.mapView addGestureRecognizer:tapRecognizer];
+    tapRecognizer.minimumPressDuration = 0.75;
+    [self.mapView addGestureRecognizer:tapRecognizer];
     
 //    ZCSHoldProgress *holdProgress = [[ZCSHoldProgress alloc] initWithTarget:self action:@selector(gestureRecogizerTarget:)];
 //    holdProgress.minimumPressDuration = 1.0;
@@ -147,12 +147,15 @@
     
     CLLocationCoordinate2D tapPoint = [self.mapView convertPoint:point toCoordinateFromView:self.mapView];
     
-    GasStation *gasStation = [[GasStation alloc] init];
-    gasStation.coordinate = tapPoint;
-    gasStation.title = [NSString stringWithFormat:@"Донбайнефтегаз ООО"];
-    //gasStation.subtitle = @"ТОП ДОН";
+//    GasStation *gasStation = [[GasStation alloc] init];
+//    gasStation.coordinate = tapPoint;
+//    gasStation.title = [NSString stringWithFormat:@"Донбайнефтегаз ООО"];
+//    //gasStation.subtitle = @"ТОП ДОН";
+//    
+//    [self.mapView addAnnotation:gasStation];
     
-    [self.mapView addAnnotation:gasStation];
+    
+    [self loadStationsAround:[[CLLocation alloc] initWithLatitude:tapPoint.latitude longitude:tapPoint.longitude]];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
