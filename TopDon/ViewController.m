@@ -73,6 +73,8 @@
     
     pullRightView = nil;
     
+
+    
     locationManager = [[CLLocationManager alloc] init];
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     locationManager.delegate = self;

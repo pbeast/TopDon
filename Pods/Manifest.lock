@@ -21,18 +21,21 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - CMMapLauncher (1.1.0)
+  - DWTagList (0.0.6)
   - MBProgressHUD (0.9)
   - ZCSHoldProgress (0.0.5)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - CMMapLauncher
+  - DWTagList (~> 0.0.5)
   - MBProgressHUD (~> 0.8)
   - ZCSHoldProgress (~> 0.0.5)
 
 SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
   CMMapLauncher: 4b95899cc39bd14dfa3e8525470e34cb8edbb028
+  DWTagList: 73516bab9ac27aeb725e34998f43ff20c8b30ff5
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
   ZCSHoldProgress: f889344a90e4facfceaac4764f3f896fe1322a5a
 

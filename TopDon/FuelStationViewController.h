@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "GasStation.h"
+#import "DWTagList.h"
+
 @interface FuelStationViewController : UITableViewController<MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
 
 @property (assign, nonatomic) GasStation* gasStation;
@@ -15,4 +17,8 @@
 @property (weak, nonatomic) IBOutlet MKMapView *stationMapView;
 
 - (IBAction)navigateToStation:(id)sender;
+@property (weak, nonatomic) IBOutlet DWTagList *fuelTypesView;
+@property (weak, nonatomic) IBOutlet DWTagList *servicesView;
+@property (weak, nonatomic) IBOutlet DWTagList *additionalServices;
+
 @end

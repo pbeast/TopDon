@@ -39,6 +39,92 @@
     [self.stationMapView setRegion:region animated:YES];
     
     [self.stationMapView addAnnotation:_gasStation];
+    
+//--------------------
+    NSMutableArray* fuels = [NSMutableArray array];
+
+    [self.fuelTypesView setAutomaticResize:YES];
+    [self.fuelTypesView setScrollEnabled:NO];
+    [self.fuelTypesView setViewOnly:YES];
+
+    if ([_gasStation FuelTypes] != nil)
+    {
+        for (NSDictionary* fuel in [_gasStation FuelTypes]) {
+            [fuels addObject:[fuel objectForKey:@"Name"]];
+        }
+        
+        [self.fuelTypesView setTags:fuels];
+    }
+    else
+        [self.fuelTypesView setTags:@[@"N/A"]];
+    
+    //--------------------
+
+    NSMutableArray* services = [NSMutableArray array];
+    [self.servicesView setAutomaticResize:YES];
+    [self.servicesView setScrollEnabled:NO];
+    [self.servicesView setViewOnly:YES];
+
+    if ([_gasStation TechnicalServices] != nil)
+    {
+        for (NSDictionary* service in [_gasStation TechnicalServices]) {
+                [services addObject:[service objectForKey:@"Name"]];
+        }
+        
+        [self.servicesView setTags:services];
+    }
+    else
+        [self.servicesView setTags:@[@"N/A"]];
+
+    //--------------------
+    
+    NSMutableArray* extServices = [NSMutableArray array];
+    [self.additionalServices setViewOnly:YES];
+    [self.additionalServices setAutomaticResize:YES];
+    [self.additionalServices setScrollEnabled:NO];
+
+    if ([_gasStation AdditionalServices] != nil)
+    {
+        for (NSDictionary* extService in [_gasStation AdditionalServices]) {
+            [extServices addObject:[extService objectForKey:@"Name"]];
+        }
+        
+        [self.additionalServices setTags:extServices];
+    }
+    else
+        [self.additionalServices setTags:@[@"N/A"]];
+
+    [self.tableView setSeparatorColor:[UIColor clearColor]];
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return section < 4 && section > 1 ? 7 : 0;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSArray *tmp = @[@182, @41, @103, @103, @103];
+    
+    if( indexPath.section == 2){
+        CGRect r= self.fuelTypesView.bounds;
+        r.size.height = self.fuelTypesView.fittedSize.height + 5;
+        return r.size.height;
+    }
+    
+    if( indexPath.section == 3){
+        CGRect r= self.servicesView.bounds;
+        r.size.height = self.servicesView.fittedSize.height + 5;
+        return r.size.height;
+    }
+    
+    if( indexPath.section == 4){
+        CGRect r= self.additionalServices.bounds;
+        r.size.height = self.additionalServices.fittedSize.height + 5;
+        return r.size.height;
+    }
+    
+    return [[tmp objectAtIndex:indexPath.section] integerValue];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
