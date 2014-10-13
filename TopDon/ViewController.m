@@ -305,7 +305,58 @@
     
     for (NSDictionary* fuelStation in foundGasStations) {
         GasStation *gasStation = [[GasStation alloc] initWithServerObject:fuelStation];
+        
+        if ([allowedFuels count] > 0){
+            BOOL found = YES;
+            for (NSNumber *fuelId in allowedFuels) {
+                int idx = [[gasStation FuelTypes] indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+                    
+                    *stop = [[obj objectForKey:@"Id"] integerValue] == [fuelId integerValue];
+                    
+                    return *stop;
+                }];
                 
+                found &= (idx != NSNotFound);
+            }
+            
+            if (!found)
+                continue;
+        }
+        
+        if ([allowedServices count] > 0){
+            BOOL found = YES;
+            for (NSNumber *serviceId in allowedServices) {
+                int idx = [[gasStation TechnicalServices] indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+                    
+                    *stop = [[obj objectForKey:@"Id"] integerValue] == [serviceId integerValue];
+                    
+                    return *stop;
+                }];
+                
+                found &= (idx != NSNotFound);
+            }
+            
+            if (!found)
+                continue;
+        }
+        
+        if ([allowedExtServices count] > 0){
+            BOOL found = YES;
+            for (NSNumber *extServiceId in allowedExtServices) {
+                int idx = [[gasStation AdditionalServices] indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+                    
+                    *stop = [[obj objectForKey:@"Id"] integerValue] == [extServiceId integerValue];
+                    
+                    return *stop;
+                }];
+                
+                found &= (idx != NSNotFound);
+            }
+            
+            if (!found)
+                continue;
+        }
+
         [self.mapView addAnnotation:gasStation];
     }
 }
@@ -322,7 +373,7 @@
             return *stop;
         }];
         
-        if (index >= 0)
+        if (index != NSNotFound)
             [allowedFuels removeObjectAtIndex:index];
     }
     
@@ -334,13 +385,13 @@
         [allowedServices addObject:[NSNumber numberWithInt:serviceId]];
     else
     {
-        int index = [allowedFuels indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        int index = [allowedServices indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
             *stop = [obj intValue] == serviceId;
             
             return *stop;
         }];
         
-        if (index >= 0)
+        if (index != NSNotFound)
             [allowedServices removeObjectAtIndex:index];
     }
     
@@ -358,7 +409,7 @@
             return *stop;
         }];
         
-        if (index >= 0)
+        if (index != NSNotFound)
             [allowedExtServices removeObjectAtIndex:index];
     }
     
