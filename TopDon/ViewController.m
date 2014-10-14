@@ -12,6 +12,9 @@
 #import "AFNetworking.h"
 #import "ZCSHoldProgress.h"
 
+
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+
 @interface ViewController ()
 {
     FilterView* pullRightView;
@@ -25,6 +28,8 @@
     NSMutableArray* allowedFuels;
     NSMutableArray* allowedServices;
     NSMutableArray* allowedExtServices;
+    
+    BOOL geoLocationIsWorking;
 }
 @end
 
@@ -35,14 +40,9 @@
     if (pullRightView != nil)
         return;
     
-    //    float panelWidth = 200;
-    //    
-    //    float w = self.view.bounds.size.width;
     float panelHeight = 350;
     float verticalOffset = self.mapView.frame.origin.y / 2;
     float  h = self.view.bounds.size.height;
-    
-    //    pullRightView = [[PullableView alloc] initWithFrame:CGRectMake(w, verticalOffset + h / 2.0 - panelHeight / 2.0, panelWidth, panelHeight)];
     
     pullRightView = [[[NSBundle mainBundle] loadNibNamed:@"FilterView" owner:self options:nil] objectAtIndex:0];
     //    pullRightView.backgroundColor = [UIColor darkGrayColor];
@@ -63,6 +63,24 @@
     [self.view addSubview:pullRightView];
 }
 
+- (BOOL)locationServicesAvailable
+{
+    if ([CLLocationManager locationServicesEnabled] == NO) {
+        return NO;
+    } else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
+        return NO;
+    } else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted) {
+        return NO;
+    }
+    return YES;
+}
+
+- (void)showGeoservicesRequiredAlert
+{
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"TOPDON" message:@"Для корректной работы требуется разрешить использования сервисов геолокации. Включить службы геолокации можно в меню «Настройки» > «Приватность» > «Службы геолокации»." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [av show];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -72,19 +90,33 @@
     allowedExtServices = [NSMutableArray array];
     
     pullRightView = nil;
-    
+
+
+    currentLocation = [[CLLocation alloc] initWithLatitude:0 longitude:0];
 
     
-    locationManager = [[CLLocationManager alloc] init];
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    locationManager.delegate = self;
-    [locationManager startUpdatingLocation];
+    if (![self locationServicesAvailable])
+    {
+        [self showGeoservicesRequiredAlert];
+        geoLocationIsWorking = NO;
         
-    currentLocation = [[CLLocation alloc] initWithLatitude:0 longitude:0];
+        return;
+    }
+    
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")){
+        geoLocationIsWorking = NO;
+        [locationManager requestWhenInUseAuthorization];
+    }
+    else{
+        geoLocationIsWorking = YES;
+        [locationManager startUpdatingLocation];
+    }
   
-    tapRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(foundTap:)];
-//    tapRecognizer.numberOfTapsRequired = 1;
-//    tapRecognizer.numberOfTouchesRequired = 1;
+    tapRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longTapOnMap:)];
     tapRecognizer.minimumPressDuration = 0.75;
     [self.mapView addGestureRecognizer:tapRecognizer];
     
@@ -94,6 +126,56 @@
 //    holdProgress.minimumSize = 20;
 //    holdProgress.borderSize = 2;
 //    [self.mapView addGestureRecognizer:holdProgress];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.navigationController.navigationBarHidden = YES;
+}
+
+-(void)checkLocationMonitoring
+{
+//    if (!geoLocationIsWorking){
+//        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")){
+//            geoLocationIsWorking = NO;
+//            [locationManager requestWhenInUseAuthorization];
+//        }
+//        else{
+//            geoLocationIsWorking = YES;
+//            [locationManager startUpdatingLocation];
+//        }
+//    }
+}
+
+-(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+    if (status == kCLAuthorizationStatusAuthorizedWhenInUse || status == kCLAuthorizationStatusAuthorizedAlways)
+    {
+        geoLocationIsWorking = YES;
+
+        [locationManager startUpdatingLocation];
+    }
+    else if (kCLAuthorizationStatusDenied == status){
+        geoLocationIsWorking = NO;
+
+        [self showGeoservicesRequiredAlert];
+    }
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    CLLocation *newLocation = [locations objectAtIndex:0];
+    
+    if ([currentLocation distanceFromLocation:newLocation]>100){
+        
+        currentLocation = newLocation;
+        [self centerMap:self];
+        
+        [self.centerMapBtn setHidden:NO];
+        
+        [self showFilterView];
+        
+    }
 }
 
 - (void)gestureRecogizerTarget:(UIGestureRecognizer *)gestureRecognizer {
@@ -138,7 +220,7 @@
 	}
 }
 
--(void)foundTap:(UIGestureRecognizer *)recognizer
+-(void)longTapOnMap:(UIGestureRecognizer *)recognizer
 {
     if (recognizer.state != UIGestureRecognizerStateBegan)
     {
@@ -148,14 +230,6 @@
     CGPoint point = [recognizer locationInView:self.mapView];
     
     CLLocationCoordinate2D tapPoint = [self.mapView convertPoint:point toCoordinateFromView:self.mapView];
-    
-//    GasStation *gasStation = [[GasStation alloc] init];
-//    gasStation.coordinate = tapPoint;
-//    gasStation.title = [NSString stringWithFormat:@"Донбайнефтегаз ООО"];
-//    //gasStation.subtitle = @"ТОП ДОН";
-//    
-//    [self.mapView addAnnotation:gasStation];
-    
     
     [self loadStationsAround:[[CLLocation alloc] initWithLatitude:tapPoint.latitude longitude:tapPoint.longitude]];
 }
@@ -186,14 +260,6 @@
 {
     GasStation *gasStation = (GasStation*)view.annotation;
     [self performSegueWithIdentifier:@"fuelStationSegue" sender:gasStation];
-
-//    NSDictionary *launchOptions = @{MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeD};
-//    [location.mapItem openInMapsWithLaunchOptions:launchOptions];
-}
-
--(void)viewWillAppear:(BOOL)animated
-{
-    self.navigationController.navigationBarHidden = YES;
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -203,23 +269,6 @@
     
     [fsvc setTitle:gasStation.title];
     [fsvc setGasStation:sender];
-}
-
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
-{
-    CLLocation *newLocation = [locations objectAtIndex:0];
-    
-    if ([currentLocation distanceFromLocation:newLocation]>100){
-        
-        currentLocation = newLocation;
-        [self centerMap:self];
-        
-        [self.centerMapBtn setHidden:NO];
-
-        [self showFilterView];
-
-    }
-    
 }
 
 -(void)pullableView:(PullableView *)pView didChangeState:(BOOL)opened{
@@ -309,7 +358,7 @@
         if ([allowedFuels count] > 0){
             BOOL found = YES;
             for (NSNumber *fuelId in allowedFuels) {
-                int idx = [[gasStation FuelTypes] indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+                NSUInteger idx = [[gasStation FuelTypes] indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
                     
                     *stop = [[obj objectForKey:@"Id"] integerValue] == [fuelId integerValue];
                     
@@ -326,7 +375,7 @@
         if ([allowedServices count] > 0){
             BOOL found = YES;
             for (NSNumber *serviceId in allowedServices) {
-                int idx = [[gasStation TechnicalServices] indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+                NSUInteger idx = [[gasStation TechnicalServices] indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
                     
                     *stop = [[obj objectForKey:@"Id"] integerValue] == [serviceId integerValue];
                     
@@ -343,7 +392,7 @@
         if ([allowedExtServices count] > 0){
             BOOL found = YES;
             for (NSNumber *extServiceId in allowedExtServices) {
-                int idx = [[gasStation AdditionalServices] indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+                NSUInteger idx = [[gasStation AdditionalServices] indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
                     
                     *stop = [[obj objectForKey:@"Id"] integerValue] == [extServiceId integerValue];
                     
@@ -367,7 +416,7 @@
         [allowedFuels addObject:[NSNumber numberWithInt:fuelId]];
     else
     {
-        int index = [allowedFuels indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        NSUInteger index = [allowedFuels indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
             *stop = [obj intValue] == fuelId;
             
             return *stop;
@@ -385,7 +434,7 @@
         [allowedServices addObject:[NSNumber numberWithInt:serviceId]];
     else
     {
-        int index = [allowedServices indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        NSUInteger index = [allowedServices indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
             *stop = [obj intValue] == serviceId;
             
             return *stop;
@@ -403,7 +452,7 @@
         [allowedExtServices addObject:[NSNumber numberWithInt:extServiceId]];
     else
     {
-        int index = [allowedExtServices indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        NSUInteger index = [allowedExtServices indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
             *stop = [obj intValue] == extServiceId;
             
             return *stop;

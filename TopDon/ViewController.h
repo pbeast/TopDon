@@ -13,6 +13,9 @@
 
 @interface ViewController : UIViewController<PullableViewDelegate, MKMapViewDelegate, CLLocationManagerDelegate, FilterViewDelegate>
 
+
+-(void)checkLocationMonitoring;
+
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 - (IBAction)centerMap:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *searchField;
