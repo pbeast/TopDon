@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="5Cz-pm-GIz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A379a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="5Cz-pm-GIz">
     <dependencies>
         <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -31,8 +30,8 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="9iY-f8-wxa"/>
                                 </connections>
                             </mapView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1HR-ra-yir">
-                                <rect key="frame" x="20" y="523" width="25" height="25"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1HR-ra-yir">
+                                <rect key="frame" x="20" y="519" width="29" height="29"/>
                                 <state key="normal" image="CenterMap">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -143,15 +142,15 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view autoresizesSubviews="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fRT-Ro-u82" customClass="DWTagList">
-                                                    <rect key="frame" x="5" y="5" width="310" height="92"/>
+                                                    <rect key="frame" x="-3" y="-3" width="326" height="108"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="fRT-Ro-u82" firstAttribute="top" secondItem="K2C-jv-WYT" secondAttribute="topMargin" constant="-3" id="WyQ-A1-jpc"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="fRT-Ro-u82" secondAttribute="trailing" constant="-3" id="a8d-S9-p12"/>
-                                                <constraint firstItem="fRT-Ro-u82" firstAttribute="leading" secondItem="K2C-jv-WYT" secondAttribute="leadingMargin" constant="-3" id="gPS-Ex-LIO"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="fRT-Ro-u82" secondAttribute="bottom" constant="-3" id="wpj-O9-Nc6"/>
+                                                <constraint firstItem="fRT-Ro-u82" firstAttribute="top" secondItem="K2C-jv-WYT" secondAttribute="top" constant="-3" id="WyQ-A1-jpc"/>
+                                                <constraint firstAttribute="trailing" secondItem="fRT-Ro-u82" secondAttribute="trailing" constant="-3" id="a8d-S9-p12"/>
+                                                <constraint firstItem="fRT-Ro-u82" firstAttribute="leading" secondItem="K2C-jv-WYT" secondAttribute="leading" constant="-3" id="gPS-Ex-LIO"/>
+                                                <constraint firstAttribute="bottom" secondItem="fRT-Ro-u82" secondAttribute="bottom" constant="-3" id="wpj-O9-Nc6"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -167,15 +166,15 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cSC-2f-sLP" customClass="DWTagList">
-                                                    <rect key="frame" x="5" y="5" width="310" height="92"/>
+                                                    <rect key="frame" x="-3" y="-3" width="326" height="108"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="cSC-2f-sLP" firstAttribute="top" secondItem="Tjt-A0-x39" secondAttribute="topMargin" constant="-3" id="4rE-au-qLy"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="cSC-2f-sLP" secondAttribute="trailing" constant="-3" id="BkK-9c-dO5"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="cSC-2f-sLP" secondAttribute="bottom" constant="-3" id="Eyz-Z7-6rV"/>
-                                                <constraint firstItem="cSC-2f-sLP" firstAttribute="leading" secondItem="Tjt-A0-x39" secondAttribute="leadingMargin" constant="-3" id="s5f-ni-drp"/>
+                                                <constraint firstItem="cSC-2f-sLP" firstAttribute="top" secondItem="Tjt-A0-x39" secondAttribute="top" constant="-3" id="4rE-au-qLy"/>
+                                                <constraint firstAttribute="trailing" secondItem="cSC-2f-sLP" secondAttribute="trailing" constant="-3" id="BkK-9c-dO5"/>
+                                                <constraint firstAttribute="bottom" secondItem="cSC-2f-sLP" secondAttribute="bottom" constant="-3" id="Eyz-Z7-6rV"/>
+                                                <constraint firstItem="cSC-2f-sLP" firstAttribute="leading" secondItem="Tjt-A0-x39" secondAttribute="leading" constant="-3" id="s5f-ni-drp"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -191,15 +190,15 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="par-GX-OCa" customClass="DWTagList">
-                                                    <rect key="frame" x="5" y="5" width="310" height="92"/>
+                                                    <rect key="frame" x="-3" y="-3" width="326" height="108"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="par-GX-OCa" firstAttribute="top" secondItem="cLc-eG-OeU" secondAttribute="topMargin" constant="-3" id="5F3-kL-YFX"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="par-GX-OCa" secondAttribute="trailing" constant="-3" id="MTH-cy-p5F"/>
-                                                <constraint firstItem="par-GX-OCa" firstAttribute="leading" secondItem="cLc-eG-OeU" secondAttribute="leadingMargin" constant="-3" id="RFv-sl-ewk"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="par-GX-OCa" secondAttribute="bottom" constant="-3" id="iUR-Bk-K8p"/>
+                                                <constraint firstItem="par-GX-OCa" firstAttribute="top" secondItem="cLc-eG-OeU" secondAttribute="top" constant="-3" id="5F3-kL-YFX"/>
+                                                <constraint firstAttribute="trailing" secondItem="par-GX-OCa" secondAttribute="trailing" constant="-3" id="MTH-cy-p5F"/>
+                                                <constraint firstItem="par-GX-OCa" firstAttribute="leading" secondItem="cLc-eG-OeU" secondAttribute="leading" constant="-3" id="RFv-sl-ewk"/>
+                                                <constraint firstAttribute="bottom" secondItem="par-GX-OCa" secondAttribute="bottom" constant="-3" id="iUR-Bk-K8p"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

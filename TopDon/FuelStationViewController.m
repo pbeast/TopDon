@@ -31,6 +31,8 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+
     self.navigationController.navigationBarHidden = NO;
     
     [self.stationMapView setCenterCoordinate:_gasStation .coordinate];

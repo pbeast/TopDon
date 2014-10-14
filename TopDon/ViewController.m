@@ -130,6 +130,8 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+
     self.navigationController.navigationBarHidden = YES;
 }
 
@@ -410,10 +412,10 @@
     }
 }
 
--(void)shouldShow:(BOOL)show fuelWithId:(int)fuelId
+-(void)shouldShow:(BOOL)show fuelWithId:(long)fuelId
 {
     if (show)
-        [allowedFuels addObject:[NSNumber numberWithInt:fuelId]];
+        [allowedFuels addObject:[NSNumber numberWithLong:fuelId]];
     else
     {
         NSUInteger index = [allowedFuels indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
@@ -429,9 +431,9 @@
     [self updatesStationsOnMap];
 }
 
--(void)shouldShow:(BOOL)show serviceWithId:(int)serviceId{
+-(void)shouldShow:(BOOL)show serviceWithId:(long)serviceId{
     if (show)
-        [allowedServices addObject:[NSNumber numberWithInt:serviceId]];
+        [allowedServices addObject:[NSNumber numberWithLong:serviceId]];
     else
     {
         NSUInteger index = [allowedServices indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
@@ -447,9 +449,9 @@
     [self updatesStationsOnMap];
 }
 
--(void)shouldShow:(BOOL)show extServiceWithId:(int)extServiceId{
+-(void)shouldShow:(BOOL)show extServiceWithId:(long)extServiceId{
     if (show)
-        [allowedExtServices addObject:[NSNumber numberWithInt:extServiceId]];
+        [allowedExtServices addObject:[NSNumber numberWithLong:extServiceId]];
     else
     {
         NSUInteger index = [allowedExtServices indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
