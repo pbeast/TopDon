@@ -127,6 +127,19 @@
 //    holdProgress.minimumSize = 20;
 //    holdProgress.borderSize = 2;
 //    [self.mapView addGestureRecognizer:holdProgress];
+    
+//    UILabel *label = [UILabel new];
+//    label.text = @"To be, or not to be: that is the question: Whether 'tis nobler in the mind to suffer...";
+//    [label sizeToFit];
+//    
+//    [label setBackgroundColor:[UIColor greenColor]];
+//    [[self marqueeView] setViewToScroll:label];
+//    
+//    [[self marqueeView] beginScrolling];
+    
+    [[self newsLine] setMarqueeType:MLContinuous];
+//    [[self newsLine] setContinuousMarqueeExtraBuffer:10];
+    [[self newsLine] setBackgroundColor:[UIColor blackColor]];
 }
 
 -(void)viewWillAppear:(BOOL)animated

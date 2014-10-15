@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		386B891119E0455400159178 /* GasStation.m in Sources */ = {isa = PBXBuildFile; fileRef = 386B891019E0455400159178 /* GasStation.m */; };
+		38A0740F19EF06A000DEABF1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38A0740E19EF06A000DEABF1 /* QuartzCore.framework */; };
 		D1D066D07D37495E8C9EB05D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E217DEC74ACA420D93B84848 /* libPods.a */; };
 		EC1CF39F19DA929800B6BD96 /* FilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC1CF39E19DA929800B6BD96 /* FilterView.xib */; };
 		EC33E09219DD656C0025B88A /* FuelStationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC33E09119DD656C0025B88A /* FuelStationViewController.m */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		386B890F19E0455400159178 /* GasStation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GasStation.h; sourceTree = "<group>"; };
 		386B891019E0455400159178 /* GasStation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GasStation.m; sourceTree = "<group>"; };
+		38A0740E19EF06A000DEABF1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		728EB32347E14CB7374339DD /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		CBCD46D7FE8E8ACD3FBA4A93 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E217DEC74ACA420D93B84848 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38A0740F19EF06A000DEABF1 /* QuartzCore.framework in Frameworks */,
 				ECF74FCA19D8406B0035E28B /* MapKit.framework in Frameworks */,
 				ECF74F9719D83EF80035E28B /* CoreGraphics.framework in Frameworks */,
 				ECF74F9919D83EF80035E28B /* UIKit.framework in Frameworks */,
@@ -112,6 +115,7 @@
 		ECF74F9319D83EF80035E28B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				38A0740E19EF06A000DEABF1 /* QuartzCore.framework */,
 				ECF74FC919D8406B0035E28B /* MapKit.framework */,
 				ECF74F9419D83EF80035E28B /* Foundation.framework */,
 				ECF74F9619D83EF80035E28B /* CoreGraphics.framework */,
@@ -206,6 +210,11 @@
 			attributes = {
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Pavel Yankelevich";
+				TargetAttributes = {
+					ECF74F9019D83EF80035E28B = {
+						DevelopmentTeam = 6SA63874LB;
+					};
+				};
 			};
 			buildConfigurationList = ECF74F8C19D83EF80035E28B /* Build configuration list for PBXProject "TopDon" */;
 			compatibilityVersion = "Xcode 3.2";

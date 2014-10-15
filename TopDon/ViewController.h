@@ -10,6 +10,7 @@
 #import "FilterView.h"
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "MarqueeLabel.h"
 
 @interface ViewController : UIViewController<PullableViewDelegate, MKMapViewDelegate, CLLocationManagerDelegate, FilterViewDelegate>
 
@@ -20,4 +21,6 @@
 - (IBAction)centerMap:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *searchField;
 @property (weak, nonatomic) IBOutlet UIButton *centerMapBtn;
+
+@property (weak, nonatomic) IBOutlet MarqueeLabel *newsLine;
 @end
