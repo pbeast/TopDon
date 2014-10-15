@@ -52,7 +52,7 @@
     pullRightView.animate = YES;
     pullRightView.toggleOnTap = YES;
     
-    pullRightView.layer.cornerRadius = 6;
+//    pullRightView.layer.cornerRadius = 6;
     
     pullRightView.handleView.backgroundColor = [UIColor clearColor];
     pullRightView.handleView.frame = CGRectMake(0, panelHeight / 2 - 25, 15, 50);
@@ -107,7 +107,8 @@
     locationManager.delegate = self;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")){
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))
+    {
         geoLocationIsWorking = NO;
         [locationManager requestWhenInUseAuthorization];
     }

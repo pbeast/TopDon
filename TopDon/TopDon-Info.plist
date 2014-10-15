@@ -25,9 +25,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationUsageDescription</key>
-	<string>This string is optional but recommended on iOS 6 &amp; 7 and should describe how your app uses location services. Set this string in the Info.plist</string>
+	<string>Аппликация TOPDON использует службы геолокации для поиска заправочных станций относительно Вашего текущего местоположения.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This string is required to gain permission to access location services on iOS 8+ and should describe how your app uses location services. Set this string in the Info.plist</string>
+	<string>Аппликация TOPDON использует службы геолокации для поиска заправочных станций относительно Вашего текущего местоположения.</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>

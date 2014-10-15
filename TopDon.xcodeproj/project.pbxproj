@@ -389,10 +389,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Alexander Dolgov (3879A83D2K)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TopDon/TopDon-Prefix.pch";
 				INFOPLIST_FILE = "TopDon/TopDon-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "7c6e451b-2d61-4e4d-a662-af0fb96979da";
 				USER_HEADER_SEARCH_PATHS = "/3rdParties/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -404,10 +406,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Alexander Dolgov (3879A83D2K)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TopDon/TopDon-Prefix.pch";
 				INFOPLIST_FILE = "TopDon/TopDon-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "7c6e451b-2d61-4e4d-a662-af0fb96979da";
 				USER_HEADER_SEARCH_PATHS = "/3rdParties/**";
 				WRAPPER_EXTENSION = app;
 			};
