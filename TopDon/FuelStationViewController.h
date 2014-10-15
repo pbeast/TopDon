@@ -21,4 +21,5 @@
 @property (weak, nonatomic) IBOutlet DWTagList *servicesView;
 @property (weak, nonatomic) IBOutlet DWTagList *additionalServices;
 
+@property (weak, nonatomic) IBOutlet UILabel *promo;
 @end

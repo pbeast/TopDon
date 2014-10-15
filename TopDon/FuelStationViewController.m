@@ -106,7 +106,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray *tmp = @[@182, @41, @103, @103, @103];
+    NSArray *tmp = @[@182, @41, @103, @103, @103, @92];
     
     if( indexPath.section == 2){
         CGRect r= self.fuelTypesView.bounds;
@@ -126,6 +126,16 @@
         return r.size.height;
     }
     
+    if( indexPath.section == 4){
+        CGRect r= self.additionalServices.bounds;
+        r.size.height = self.additionalServices.fittedSize.height + 5;
+        return r.size.height;
+    }
+    
+    if( indexPath.section == 5){
+        return [[[self promo] text] boundingRectWithSize:CGSizeMake(self.promo.frame.size.width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{ NSFontAttributeName :[[self promo] font] } context:nil].size.height + 20;
+    }
+
     return [[tmp objectAtIndex:indexPath.section] integerValue];
 }
 
@@ -157,11 +167,20 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 5;
+    return 6;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0)
+        return;
+    
+    CMMapPoint * mapPoint = [CMMapPoint mapPointWithName:[_gasStation title] coordinate:_gasStation.coordinate];
+    [CMMapLauncher launchMapApp:[[navigators objectAtIndex:(buttonIndex - 1)] intValue] forDirectionsTo:mapPoint];
 }
 
 - (IBAction)navigateToStation:(id)sender

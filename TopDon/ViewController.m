@@ -11,7 +11,7 @@
 #import "FuelStationViewController.h"
 #import "AFNetworking.h"
 #import "ZCSHoldProgress.h"
-
+#import "MBProgressHUD.h"
 
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
@@ -138,7 +138,6 @@
 //    [[self marqueeView] beginScrolling];
     
     [[self newsLine] setMarqueeType:MLContinuous];
-//    [[self newsLine] setContinuousMarqueeExtraBuffer:10];
     [[self newsLine] setBackgroundColor:[UIColor blackColor]];
 }
 
@@ -280,6 +279,9 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    if (![[segue destinationViewController] isKindOfClass:[FuelStationViewController class]])
+        return;
+    
     FuelStationViewController *fsvc = [segue destinationViewController];
     GasStation * gasStation = sender;
     
@@ -300,9 +302,33 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [self.searchField resignFirstResponder];
     
-    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"" message:[textField text] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     
-    [av show];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.labelText = @"Идет поиск...";
+    
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    
+    [geocoder geocodeAddressString:[textField text]
+                 completionHandler:^(NSArray* placemarks, NSError* error){
+                     
+                     [MBProgressHUD hideHUDForView:self.view animated:YES];
+                     
+                     if ([placemarks count] > 0)
+                     {
+                         CLPlacemark* aPlacemark = [placemarks objectAtIndex:0];
+                         [self loadStationsAround:[aPlacemark location]];
+                     }
+                     else
+                     {
+                         UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"TOPDON" message:[NSString stringWithFormat:@"%@ не найденно", [textField text]] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                         [av show];
+                     }
+//                     for (CLPlacemark* aPlacemark in placemarks)
+//                     {
+//                         
+//                     }
+                 }];
     
     return NO;
 }
