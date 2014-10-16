@@ -58,7 +58,7 @@
                                     <action selector="centerMap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="1JK-3u-obS"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999973" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="To be, or not to be: that is the question: Whether 'tis nobler in the mind to suffer..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xvk-bz-UIF" customClass="MarqueeLabel">
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999973" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Идет поиск местоположения и заправочных станций    " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xvk-bz-UIF" customClass="MarqueeLabel">
                                 <rect key="frame" x="0.0" y="76" width="320" height="29"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -239,11 +239,11 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zKA-nJ-HNL">
                                                     <rect key="frame" x="8" y="2" width="304" height="92"/>
-                                                    <mutableString key="text">Lorem ipsum dolor sit amet, no labitur inermis appellantur quo. Augue fierent iudicabit no eum, id vel mutat accumsan. Nam purto noster perfecto cu, vocibus pertinacia et mei, ne stet voluptaria eum. Aliquid molestiae conclusionemque ei eum, te diam interesset vim, viris delenit ex nam.
+                                                    <string key="text">Lorem ipsum dolor sit amet, no labitur inermis appellantur quo. Augue fierent iudicabit no eum, id vel mutat accumsan. Nam purto noster perfecto cu, vocibus pertinacia et mei, ne stet voluptaria eum. Aliquid molestiae conclusionemque ei eum, te diam interesset vim, viris delenit ex nam.
 
 Eam et erant malorum. Ea est vide dissentiunt. Vis iisque aperiri epicuri et, ius dicant facete ei, nam te dico porro. Sit ut quis vitae ceteros. Sed veniam dissentiet ne.
 
-Vitae ridens viderer no nec, nam te errem scripta patrioque. Ut copiosae consulatu vituperatoribus qui. Eam no eius lorem falli, amet alia ad vix. Id veniam scripta voluptatibus mel, cu stet graeci vivendum vix, duo ne postea possim scriptorem. At suas pericula eos.</mutableString>
+Vitae ridens viderer no nec, nam te errem scripta patrioque. Ut copiosae consulatu vituperatoribus qui. Eam no eius lorem falli, amet alia ad vix. Id veniam scripta voluptatibus mel, cu stet graeci vivendum vix, duo ne postea possim scriptorem. At suas pericula eos.</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>

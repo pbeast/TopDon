@@ -15,5 +15,6 @@
 @property (assign, readonly) NSArray* FuelTypes;
 @property (assign, readonly) NSArray* TechnicalServices;
 @property (assign, readonly) NSArray* AdditionalServices;
+@property (copy, readonly) NSString* promoText;
 
 @end

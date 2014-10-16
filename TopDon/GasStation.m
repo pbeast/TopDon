@@ -41,6 +41,10 @@
             _AdditionalServices = tmp;
         else
             _AdditionalServices = nil;
+        
+        _promoText = [object objectForKey:@"Promo"];
+        if (_promoText == nil)
+            _promoText = @"";
     }
     
 	return self;

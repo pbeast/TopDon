@@ -362,6 +362,20 @@
                                              if ([tmp objectForKey:@"status"] == 0)
                                              {
                                                  tmp = [tmp objectForKey:@"Data"];
+                                                 
+                                                 NSString* newsLine = [tmp objectForKey:@"NewsLine"];
+                                                 if (newsLine != nil){
+                                                     [[self newsLine] setText:newsLine];
+                                                     if ([[self newsLine] isPaused])
+                                                         [[self newsLine] unpauseLabel];
+                                                     [[self newsLine] setHidden:NO];
+                                                 }
+                                                 else{
+                                                     [[self newsLine] setText:@""];
+                                                     [[self newsLine] pauseLabel];
+                                                     [[self newsLine] setHidden:YES];
+                                                 }
+                                                 
                                                  foundGasStations = [tmp objectForKey:@"TradePoints"];
 
                                                  [self updatesStationsOnMap];

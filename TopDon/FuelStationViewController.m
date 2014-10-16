@@ -42,6 +42,8 @@
     
     [self.stationMapView addAnnotation:_gasStation];
     
+    [[self promo] setText:_gasStation.promoText];
+    
 //--------------------
     NSMutableArray* fuels = [NSMutableArray array];
 
@@ -167,7 +169,7 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 6;
+    return [_gasStation.promoText isEqualToString:@""] ? 5 :  6;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
