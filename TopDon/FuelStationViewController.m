@@ -42,6 +42,7 @@
     
     [self.stationMapView addAnnotation:_gasStation];
     
+  
     [[self promo] setText:_gasStation.promoText];
     
 //--------------------
