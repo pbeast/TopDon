@@ -10,7 +10,6 @@
 #import "GasStation.h"
 #import "FuelStationViewController.h"
 #import "AFNetworking.h"
-#import "ZCSHoldProgress.h"
 #import "MBProgressHUD.h"
 
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
@@ -30,6 +29,16 @@
     NSMutableArray* allowedExtServices;
     
     BOOL geoLocationIsWorking;
+    
+    CGPoint startingPoint;
+    NSSet *lastTouches;
+    UIGestureRecognizerState state;
+    NSTimer *progressTimer;
+    NSDate *startDate;
+    BOOL shouldTrigger;
+    BOOL is_triggered;
+    UIView *progressView;
+    CALayer *progressLayer;
 }
 @end
 
@@ -45,14 +54,11 @@
     float  h = self.view.bounds.size.height;
     
     pullRightView = [[[NSBundle mainBundle] loadNibNamed:@"FilterView" owner:self options:nil] objectAtIndex:0];
-    //    pullRightView.backgroundColor = [UIColor darkGrayColor];
     pullRightView.openedCenter = CGPointMake(self.view.bounds.size.width - 85, verticalOffset + h / 2.0);
     pullRightView.closedCenter = CGPointMake(self.view.bounds.size.width + 85, verticalOffset + h / 2.0);
     pullRightView.center = pullRightView.closedCenter;
     pullRightView.animate = YES;
     pullRightView.toggleOnTap = YES;
-    
-//    pullRightView.layer.cornerRadius = 6;
     
     pullRightView.handleView.backgroundColor = [UIColor clearColor];
     pullRightView.handleView.frame = CGRectMake(0, panelHeight / 2 - 25, 15, 50);
@@ -91,10 +97,8 @@
     
     pullRightView = nil;
 
-
     currentLocation = [[CLLocation alloc] initWithLatitude:0 longitude:0];
 
-    
     if (![self locationServicesAvailable])
     {
         [self showGeoservicesRequiredAlert];
@@ -118,24 +122,8 @@
     }
   
     tapRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longTapOnMap:)];
-    tapRecognizer.minimumPressDuration = 0.75;
+    tapRecognizer.minimumPressDuration = 1;
     [self.mapView addGestureRecognizer:tapRecognizer];
-    
-//    ZCSHoldProgress *holdProgress = [[ZCSHoldProgress alloc] initWithTarget:self action:@selector(gestureRecogizerTarget:)];
-//    holdProgress.minimumPressDuration = 1.0;
-//    holdProgress.size = 100;
-//    holdProgress.minimumSize = 20;
-//    holdProgress.borderSize = 2;
-//    [self.mapView addGestureRecognizer:holdProgress];
-    
-//    UILabel *label = [UILabel new];
-//    label.text = @"To be, or not to be: that is the question: Whether 'tis nobler in the mind to suffer...";
-//    [label sizeToFit];
-//    
-//    [label setBackgroundColor:[UIColor greenColor]];
-//    [[self marqueeView] setViewToScroll:label];
-//    
-//    [[self marqueeView] beginScrolling];
     
     [[self newsLine] setMarqueeType:MLContinuous];
     [[self newsLine] setBackgroundColor:[UIColor blackColor]];
@@ -193,30 +181,7 @@
     }
 }
 
-- (void)gestureRecogizerTarget:(UIGestureRecognizer *)gestureRecognizer {
-    if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-        CGPoint point = [gestureRecognizer locationInView:self.mapView];
-        
-        CLLocationCoordinate2D tapPoint = [self.mapView convertPoint:point toCoordinateFromView:self.mapView];
-        
-        [self.mapView setCenterCoordinate:tapPoint];
-//        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(tapPoint, 1000, 1000);
-//        [self.mapView setRegion:region animated:YES];
-        
-        GasStation *gasStation = [[GasStation alloc] init];
-        gasStation.coordinate = tapPoint;
-        gasStation.title = [NSString stringWithFormat:@"Донбайнефтегаз ООО"];
-        //gasStation.subtitle = @"ТОП ДОН";
-        
-        [self.mapView addAnnotation:gasStation];
-
-
-        
-        [self loadStationsAround:[[CLLocation alloc] initWithLatitude:tapPoint.latitude longitude:tapPoint.longitude]];
-    }
-    else if (gestureRecognizer.state == UIGestureRecognizerStatePossible) {
-    }
-}
+#pragma mark - Long tap progress display and handling
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *) event
 {
@@ -224,15 +189,124 @@
     if ([self.searchField isFirstResponder] && (self.searchField != touch.view))
     {
         [self.searchField resignFirstResponder];
+        
+        return;
+    }
+
+    UIView *view = nil;
+    for (UIGestureRecognizer *recognizer in touch.gestureRecognizers) {
+        if ([recognizer isEqual:self]) {
+            view = recognizer.view;
+            break;
+        }
     }
     
-    longTapPoint = CGPointZero;
-	for (UIGestureRecognizer *recognizer in touch.gestureRecognizers) {
-		if ([recognizer isKindOfClass:[ZCSHoldProgress class]]) {
-            longTapPoint = [touch locationInView:recognizer.view];
-			break;
-		}
-	}
+    startingPoint = [touch locationInView:view];
+    lastTouches = touches;
+    [self setupLongTapProgress];
+}
+
+- (void)handleTimer:(NSTimer *)timer {
+    NSTimeInterval timerElapsed = [[NSDate new] timeIntervalSinceDate:startDate];
+    shouldTrigger = timerElapsed >= tapRecognizer.minimumPressDuration;
+    if (timerElapsed >= 0.25f && progressView == nil) {
+        [self setupProgressView];
+    }
+    if (shouldTrigger && !is_triggered) {
+        is_triggered = YES;
+        state = UIGestureRecognizerStateBegan;
+    }
+    [self updateProgressLayer:(timerElapsed / tapRecognizer.minimumPressDuration)];
+}
+
+- (void)setupLongTapProgress
+{
+    if (progressTimer == nil) {
+        progressTimer =
+        [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES];
+        startDate = [NSDate new];
+    }
+}
+
+- (void)tearDown {
+    [progressTimer invalidate];
+    progressTimer = nil;
+    [self tearDownProgressView];
+    shouldTrigger = NO;
+    is_triggered = NO;
+}
+
+- (void)setupProgressView
+{
+    float diameter = 200.0f;
+    
+    progressView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, diameter, diameter)];
+    UITouch *touch = (UITouch *)[lastTouches anyObject];
+    UIView *view = nil;
+    for (UIGestureRecognizer *recognizer in touch.gestureRecognizers) {
+        if ([recognizer isEqual:self]) {
+            view = recognizer.view;
+            break;
+        }
+    }
+    
+    CGPoint center = [touch locationInView:view];
+    if (center.x == 0 && center.y == 0)
+        return;
+    
+   progressView.center = center;
+   progressView.alpha = 0.75f;
+   progressView.layer.borderColor = [[UIColor blackColor] CGColor];
+   progressView.layer.borderWidth = 2;
+   progressView.layer.cornerRadius = diameter / 2.0f;
+   progressLayer = [[CALayer alloc] init];
+   progressLayer.frame = CGRectZero;
+   progressLayer.backgroundColor = [[UIColor blackColor] CGColor];;
+   progressLayer.cornerRadius = diameter / 2.0f;
+   
+    [progressView.layer addSublayer:progressLayer];
+    [self.view addSubview:progressView];
+}
+
+- (void)updateProgressLayer:(CGFloat)progress {
+    if (progress > 1.0) {
+        progressLayer.backgroundColor =  [[UIColor blackColor] CGColor];
+        progressView.layer.borderColor =  [[UIColor blackColor] CGColor];
+        progressView.hidden = YES;
+        return;
+    }
+    
+    float diameter = 200.0f;
+    CGFloat size = diameter * progress;
+    if (size < 20)
+        size = 20;
+    
+    CGFloat center = (diameter / 2.0f) - (size / 2.0f);
+    progressLayer.cornerRadius = size / 2.0f;
+    progressLayer.frame = CGRectMake(center, center, size, size);
+}
+
+- (void)tearDownProgressView {
+    if (progressView == nil)
+        return;
+    
+    [progressView removeFromSuperview];
+    progressView = nil;
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+    lastTouches = touches;
+    if (progressTimer != nil) {
+        state = UIGestureRecognizerStatePossible;
+        [self tearDown];
+    }
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    lastTouches = touches;
+    if (progressTimer != nil) {
+        [self tearDown];
+    }
 }
 
 -(void)longTapOnMap:(UIGestureRecognizer *)recognizer
@@ -243,11 +317,15 @@
     }
     
     CGPoint point = [recognizer locationInView:self.mapView];
+    if (isnan(point.x) || isnan(point.y))
+        return;
     
     CLLocationCoordinate2D tapPoint = [self.mapView convertPoint:point toCoordinateFromView:self.mapView];
     
     [self loadStationsAround:[[CLLocation alloc] initWithLatitude:tapPoint.latitude longitude:tapPoint.longitude]];
 }
+
+#pragma mark - Map view delegates
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
     static NSString *identifier = @"GasStation";

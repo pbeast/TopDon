@@ -3,7 +3,6 @@
     <dependencies>
         <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -238,7 +237,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zKA-nJ-HNL">
-                                                    <rect key="frame" x="8" y="2" width="304" height="92"/>
+                                                    <rect key="frame" x="4" y="-6" width="312" height="112"/>
                                                     <string key="text">Lorem ipsum dolor sit amet, no labitur inermis appellantur quo. Augue fierent iudicabit no eum, id vel mutat accumsan. Nam purto noster perfecto cu, vocibus pertinacia et mei, ne stet voluptaria eum. Aliquid molestiae conclusionemque ei eum, te diam interesset vim, viris delenit ex nam.
 
 Eam et erant malorum. Ea est vide dissentiunt. Vis iisque aperiri epicuri et, ius dicant facete ei, nam te dico porro. Sit ut quis vitae ceteros. Sed veniam dissentiet ne.
@@ -250,10 +249,10 @@ Vitae ridens viderer no nec, nam te errem scripta patrioque. Ut copiosae consula
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="zKA-nJ-HNL" firstAttribute="leading" secondItem="PHf-9V-raA" secondAttribute="leadingMargin" id="1aC-8D-XPD"/>
-                                                <constraint firstItem="zKA-nJ-HNL" firstAttribute="bottom" secondItem="PHf-9V-raA" secondAttribute="bottomMargin" id="O3l-nA-zp7"/>
-                                                <constraint firstItem="zKA-nJ-HNL" firstAttribute="trailing" secondItem="PHf-9V-raA" secondAttribute="trailingMargin" id="Okl-gk-bVY"/>
-                                                <constraint firstItem="zKA-nJ-HNL" firstAttribute="top" secondItem="PHf-9V-raA" secondAttribute="topMargin" constant="-6" id="WaC-PG-bMI"/>
+                                                <constraint firstItem="zKA-nJ-HNL" firstAttribute="leading" secondItem="PHf-9V-raA" secondAttribute="leading" constant="4" id="1aC-8D-XPD"/>
+                                                <constraint firstItem="zKA-nJ-HNL" firstAttribute="bottom" secondItem="PHf-9V-raA" secondAttribute="bottom" constant="4" id="O3l-nA-zp7"/>
+                                                <constraint firstItem="zKA-nJ-HNL" firstAttribute="trailing" secondItem="PHf-9V-raA" secondAttribute="trailing" constant="-4" id="Okl-gk-bVY"/>
+                                                <constraint firstItem="zKA-nJ-HNL" firstAttribute="top" secondItem="PHf-9V-raA" secondAttribute="top" constant="-6" id="WaC-PG-bMI"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

@@ -25,7 +25,6 @@ PODS:
   - INTULocationManager (1.1.0)
   - MarqueeLabel (2.0.6)
   - MBProgressHUD (0.9)
-  - ZCSHoldProgress (0.0.5)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
@@ -34,7 +33,6 @@ DEPENDENCIES:
   - INTULocationManager (~> 1.1.0)
   - MarqueeLabel
   - MBProgressHUD (~> 0.8)
-  - ZCSHoldProgress (~> 0.0.5)
 
 SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
@@ -43,6 +41,5 @@ SPEC CHECKSUMS:
   INTULocationManager: 41506443733adccd44c0f00b44837d4ef2fda246
   MarqueeLabel: b597f5c294a2adb3b5e5c9e3d09b682b03d53334
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
-  ZCSHoldProgress: f889344a90e4facfceaac4764f3f896fe1322a5a
 
-COCOAPODS: 0.34.1
+COCOAPODS: 0.34.4
