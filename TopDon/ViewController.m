@@ -69,24 +69,6 @@
     [self.view addSubview:pullRightView];
 }
 
-- (BOOL)locationServicesAvailable
-{
-    if ([CLLocationManager locationServicesEnabled] == NO) {
-        return NO;
-    } else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
-        return NO;
-    } else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted) {
-        return NO;
-    }
-    return YES;
-}
-
-- (void)showGeoservicesRequiredAlert
-{
-    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"TOPDON" message:@"Для корректной работы требуется разрешить использования сервисов геолокации. Включить службы геолокации можно в меню «Настройки» > «Приватность» > «Службы геолокации»." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [av show];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -136,18 +118,38 @@
     self.navigationController.navigationBarHidden = YES;
 }
 
+#pragma mark - locationManager callbacks and helpers
+
 -(void)checkLocationMonitoring
 {
-//    if (!geoLocationIsWorking){
-//        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")){
-//            geoLocationIsWorking = NO;
-//            [locationManager requestWhenInUseAuthorization];
-//        }
-//        else{
-//            geoLocationIsWorking = YES;
-//            [locationManager startUpdatingLocation];
-//        }
-//    }
+    //    if (!geoLocationIsWorking){
+    //        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")){
+    //            geoLocationIsWorking = NO;
+    //            [locationManager requestWhenInUseAuthorization];
+    //        }
+    //        else{
+    //            geoLocationIsWorking = YES;
+    //            [locationManager startUpdatingLocation];
+    //        }
+    //    }
+}
+
+- (BOOL)locationServicesAvailable
+{
+    if ([CLLocationManager locationServicesEnabled] == NO) {
+        return NO;
+    } else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
+        return NO;
+    } else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted) {
+        return NO;
+    }
+    return YES;
+}
+
+- (void)showGeoservicesRequiredAlert
+{
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"TOPDON" message:@"Для корректной работы требуется разрешить использования сервисов геолокации. Включить службы геолокации можно в меню «Настройки» > «Приватность» > «Службы геолокации»." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [av show];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
@@ -355,6 +357,7 @@
     [self performSegueWithIdentifier:@"fuelStationSegue" sender:gasStation];
 }
 
+#pragma mark - Misk functions
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if (![[segue destinationViewController] isKindOfClass:[FuelStationViewController class]])
@@ -410,6 +413,8 @@
     
     return NO;
 }
+
+#pragma mark - Map operations
 
 - (IBAction)centerMap:(id)sender {
     [self.mapView setCenterCoordinate:currentLocation.coordinate];
@@ -543,6 +548,8 @@
         [self.mapView addAnnotation:gasStation];
     }
 }
+
+#pragma mark - Filtering
 
 -(void)shouldShow:(BOOL)show fuelWithId:(long)fuelId
 {
