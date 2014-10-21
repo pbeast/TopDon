@@ -14,6 +14,8 @@
 
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
+#define LOCATION_UPDATE_THRESHOLD   1000
+
 @interface ViewController ()
 {
     FilterView* pullRightView;
@@ -39,6 +41,8 @@
     BOOL is_triggered;
     UIView *progressView;
     CALayer *progressLayer;
+    
+    BOOL shouldMoveMapOnLocationChange;
 }
 @end
 
@@ -102,6 +106,8 @@
         geoLocationIsWorking = YES;
         [locationManager startUpdatingLocation];
     }
+    
+    shouldMoveMapOnLocationChange = YES;
   
     tapRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longTapOnMap:)];
     tapRecognizer.minimumPressDuration = 1;
@@ -157,7 +163,7 @@
     if (status == kCLAuthorizationStatusAuthorizedWhenInUse || status == kCLAuthorizationStatusAuthorizedAlways)
     {
         geoLocationIsWorking = YES;
-
+        shouldMoveMapOnLocationChange = YES;
         [locationManager startUpdatingLocation];
     }
     else if (kCLAuthorizationStatusDenied == status){
@@ -170,9 +176,11 @@
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
     CLLocation *newLocation = [locations objectAtIndex:0];
+    currentLocation = newLocation;
     
-    if ([currentLocation distanceFromLocation:newLocation]>100){
-        
+    //[currentLocation distanceFromLocation:newLocation]>LOCATION_UPDATE_THRESHOLD &&
+    if (shouldMoveMapOnLocationChange){
+        shouldMoveMapOnLocationChange = NO;
         currentLocation = newLocation;
         [self centerMap:self];
         
@@ -197,13 +205,17 @@
 
     UIView *view = nil;
     for (UIGestureRecognizer *recognizer in touch.gestureRecognizers) {
-        if ([recognizer isEqual:self]) {
+        if ([recognizer isEqual:tapRecognizer]) {
             view = recognizer.view;
             break;
         }
     }
     
     startingPoint = [touch locationInView:view];
+    
+//    NSLog(@"touchesBegan @ %f, %f", startingPoint.x, startingPoint.y);
+
+    
     lastTouches = touches;
     [self setupLongTapProgress];
 }
@@ -296,18 +308,48 @@
     progressView = nil;
 }
 
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
     lastTouches = touches;
     if (progressTimer != nil) {
         state = UIGestureRecognizerStatePossible;
         [self tearDown];
     }
+    
+//    UITouch *touch = [[event allTouches] anyObject];
+//    CGPoint point = [touch locationInView:_mapView];
+//
+//    NSLog(@"touchesCancelled @ %f, %f", point.x, point.y);
 }
 
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+//    UITouch *touch = [[event allTouches] anyObject];
+//    CGPoint point = [touch locationInView:_mapView];
+//    
+//    NSLog(@"touchesCancelled @ %f, %f", point.x, point.y);
+
     lastTouches = touches;
     if (progressTimer != nil) {
         [self tearDown];
+    }
+}
+
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = [[event allTouches] anyObject];
+    
+    UIView *view = nil;
+    for (UIGestureRecognizer *recognizer in touch.gestureRecognizers) {
+        if ([recognizer isEqual:tapRecognizer]) {
+            view = recognizer.view;
+            break;
+        }
+    }
+
+    if ([view isEqual:_mapView]){
+//        shouldMoveMapOnLocationChange = NO;
+        NSLog(@"User moved the map");
     }
 }
 
@@ -328,6 +370,16 @@
 }
 
 #pragma mark - Map view delegates
+
+-(void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
+{
+//    NSLog(@"regionDidChangeAnimated");
+}
+
+-(void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated
+{
+//    NSLog(@"regionWillChangeAnimated");
+}
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
     static NSString *identifier = @"GasStation";
@@ -423,6 +475,8 @@
     [self.mapView setRegion:region animated:YES];
     
     [self loadStationsAround:currentLocation];
+    
+    //shouldMoveMapOnLocationChange = YES;
 }
 
 -(void)loadStationsAround:(CLLocation *)location
