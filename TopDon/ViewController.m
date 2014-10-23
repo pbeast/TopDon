@@ -548,7 +548,11 @@
     for (NSDictionary* fuelStation in foundGasStations) {
         GasStation *gasStation = [[GasStation alloc] initWithServerObject:fuelStation];
         
-        if ([allowedFuels count] > 0){
+        if ([allowedFuels count] > 0)
+        {
+            if ([[gasStation FuelTypes] count] == 0)
+                continue;
+            
             BOOL found = YES;
             for (NSNumber *fuelId in allowedFuels) {
                 NSUInteger idx = [[gasStation FuelTypes] indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
@@ -565,7 +569,11 @@
                 continue;
         }
         
-        if ([allowedServices count] > 0){
+        if ([allowedServices count] > 0)
+        {
+            if ([[gasStation TechnicalServices] count] == 0)
+                continue;
+
             BOOL found = YES;
             for (NSNumber *serviceId in allowedServices) {
                 NSUInteger idx = [[gasStation TechnicalServices] indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
@@ -582,7 +590,11 @@
                 continue;
         }
         
-        if ([allowedExtServices count] > 0){
+        if ([allowedExtServices count] > 0)
+        {
+            if ([[gasStation AdditionalServices] count] == 0)
+                continue;
+            
             BOOL found = YES;
             for (NSNumber *extServiceId in allowedExtServices) {
                 NSUInteger idx = [[gasStation AdditionalServices] indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
