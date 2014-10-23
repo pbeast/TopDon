@@ -77,6 +77,8 @@
 {
     [super viewDidLoad];
 
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+    
     allowedFuels = [NSMutableArray array];
     allowedServices = [NSMutableArray array];
     allowedExtServices = [NSMutableArray array];
@@ -479,8 +481,21 @@
     //shouldMoveMapOnLocationChange = YES;
 }
 
+- (BOOL)connected {
+    return [AFNetworkReachabilityManager sharedManager].reachable;
+}
+
 -(void)loadStationsAround:(CLLocation *)location
 {
+    
+    if (![self connected])
+    {
+        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"TOPDON" message:@"Отсутствует подключение к сети интернет. Подключение к сети интернет требуется для правильного функционирования аппликации." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [av show];
+        
+        return;
+    }
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
     NSString* serverUrl = @"http://80.254.99.158/API/TradePointMaintanance.asmx/LocateAround";
@@ -528,6 +543,7 @@
                                              NSLog(@"Response: %@", operation.responseString);
                                              
                                              UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"TOPDON" message:[NSString stringWithFormat:@"%@", error] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//                                             UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"TOPDON" message:@"Ошибка связи с сервером.", error] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                                              [av show];
                                          }];
     
