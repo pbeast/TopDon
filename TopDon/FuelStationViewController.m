@@ -8,6 +8,7 @@
 
 #import "FuelStationViewController.h"
 #import "CMMapLauncher.h"
+#import "MKAnnotationView+WebCache.h"
 
 @interface FuelStationViewController ()
 {
@@ -155,7 +156,10 @@
             annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
             annotationView.enabled = YES;
             annotationView.canShowCallout = YES;
-            annotationView.image = [UIImage imageNamed:@"fuelPin.png"];
+
+            GasStation *gasStation = (GasStation*)annotation;
+
+            [annotationView sd_setImageWithURL:[NSURL URLWithString:gasStation.brandImage] placeholderImage:[UIImage imageNamed:@"fuelPin.png"] options:SDWebImageRefreshCached];
         } else {
             annotationView.annotation = annotation;
         }

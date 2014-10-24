@@ -11,7 +11,7 @@
 @implementation GasStation
 
 
--(id)initWithServerObject:(NSDictionary*)object
+-(id)initWithServerObject:(NSDictionary*)object andBaseLogoUrl:(NSString*)baseLogoUrl
 {
 	self = [super init];
 	if (self != nil) {
@@ -51,6 +51,11 @@
         _street = [object objectForKey:@"Street"];
         _houseNumber = [[object objectForKey:@"HouseNumber"] intValue];
 
+        _brandImage = [object objectForKey:@"brandImage"];
+        
+        int scale = [[UIScreen mainScreen] scale];
+
+        _brandImage = [NSString stringWithFormat:@"%@%@@%dx.png", baseLogoUrl, _brandImage, scale];
     }
     
 	return self;

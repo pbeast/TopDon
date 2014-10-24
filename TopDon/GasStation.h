@@ -10,15 +10,17 @@
 
 @interface GasStation : MKPointAnnotation
 
--(id)initWithServerObject:(NSDictionary*)object;
+-(id)initWithServerObject:(NSDictionary*)object andBaseLogoUrl:(NSString*)baseLogoUrl;
 
-@property (assign, readonly) NSArray* FuelTypes;
-@property (assign, readonly) NSArray* TechnicalServices;
-@property (assign, readonly) NSArray* AdditionalServices;
+@property (copy, readonly) NSArray* FuelTypes;
+@property (copy, readonly) NSArray* TechnicalServices;
+@property (copy, readonly) NSArray* AdditionalServices;
 @property (copy, readonly) NSString* promoText;
 
 @property (copy, readonly) NSString* city;
 @property (copy, readonly) NSString* street;
 @property (readonly) int houseNumber;
+
+@property (copy, readonly) NSString* brandImage;
 
 @end

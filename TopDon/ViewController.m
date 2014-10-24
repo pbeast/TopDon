@@ -11,6 +11,7 @@
 #import "FuelStationViewController.h"
 #import "AFNetworking.h"
 #import "MBProgressHUD.h"
+#import "MKAnnotationView+WebCache.h"
 
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
@@ -21,7 +22,7 @@
     FilterView* pullRightView;
     CLLocationManager *locationManager;
     CLLocation *currentLocation;
-    NSArray* foundGasStations;
+    NSMutableArray* foundGasStations;
     
     UILongPressGestureRecognizer *tapRecognizer;
     CGPoint longTapPoint;
@@ -43,6 +44,7 @@
     CALayer *progressLayer;
     
     BOOL shouldMoveMapOnLocationChange;
+    NSString* baseLogoUrl;
 }
 @end
 
@@ -392,7 +394,12 @@
             annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
             annotationView.enabled = YES;
             annotationView.canShowCallout = YES;
-            annotationView.image = [UIImage imageNamed:@"fuelPin.png"];
+            
+            GasStation *gasStation = (GasStation*)annotation;
+
+            [annotationView sd_setImageWithURL:[NSURL URLWithString:gasStation.brandImage] placeholderImage:[UIImage imageNamed:@"fuelPin.png"] options:SDWebImageRefreshCached];
+            
+            
             annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
 
         } else {
@@ -517,6 +524,8 @@
                                              {
                                                  tmp = [tmp objectForKey:@"Data"];
                                                  
+                                                 baseLogoUrl = [tmp objectForKey:@"baseLogoUrl"];
+                                                 
                                                  NSString* newsLine = [tmp objectForKey:@"NewsLine"];
                                                  if (newsLine != nil){
                                                      [[self newsLine] setText:newsLine];
@@ -530,8 +539,16 @@
                                                      [[self newsLine] setHidden:YES];
                                                  }
                                                  
-                                                 foundGasStations = [tmp objectForKey:@"TradePoints"];
+                                                 NSDictionary * stations = [tmp objectForKey:@"TradePoints"];
 
+                                                 foundGasStations = [NSMutableArray array];
+                                                 for (NSDictionary * station in stations)
+                                                 {
+                                                     GasStation *gasStation = [[GasStation alloc] initWithServerObject:station andBaseLogoUrl:baseLogoUrl];
+                                                     
+                                                     [foundGasStations addObject:gasStation];
+                                                 }
+                                                 
                                                  [self updatesStationsOnMap];
                                                  
                                                  int radius = [[tmp objectForKey:@"Radius"] intValue];
@@ -563,9 +580,8 @@
         }
     }
     
-    for (NSDictionary* fuelStation in foundGasStations) {
-        GasStation *gasStation = [[GasStation alloc] initWithServerObject:fuelStation];
-        
+    for (GasStation *gasStation in foundGasStations)
+    {
         if ([allowedFuels count] > 0)
         {
             if ([[gasStation FuelTypes] count] == 0)
