@@ -351,7 +351,7 @@
 
     if ([view isEqual:_mapView]){
 //        shouldMoveMapOnLocationChange = NO;
-        NSLog(@"User moved the map");
+        //NSLog(@"User moved the map");
     }
 }
 
@@ -448,6 +448,8 @@
                  completionHandler:^(NSArray* placemarks, NSError* error){
                      
                      [MBProgressHUD hideHUDForView:self.view animated:YES];
+                     
+                     [self showFilterView];
                      
                      if ([placemarks count] > 0)
                      {

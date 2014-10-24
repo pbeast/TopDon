@@ -17,4 +17,8 @@
 @property (assign, readonly) NSArray* AdditionalServices;
 @property (copy, readonly) NSString* promoText;
 
+@property (copy, readonly) NSString* city;
+@property (copy, readonly) NSString* street;
+@property (readonly) int houseNumber;
+
 @end

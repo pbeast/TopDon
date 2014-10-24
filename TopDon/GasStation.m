@@ -45,6 +45,12 @@
         _promoText = [object objectForKey:@"Promo"];
         if (_promoText == nil)
             _promoText = @"";
+        
+        
+        _city = [object objectForKey:@"City"];
+        _street = [object objectForKey:@"Street"];
+        _houseNumber = [[object objectForKey:@"HouseNumber"] intValue];
+
     }
     
 	return self;

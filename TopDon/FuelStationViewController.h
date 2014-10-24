@@ -22,4 +22,6 @@
 @property (weak, nonatomic) IBOutlet DWTagList *additionalServices;
 
 @property (weak, nonatomic) IBOutlet UILabel *promo;
+@property (weak, nonatomic) IBOutlet UILabel *street;
+@property (weak, nonatomic) IBOutlet UILabel *city;
 @end

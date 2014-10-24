@@ -45,6 +45,10 @@
   
     [[self promo] setText:_gasStation.promoText];
     
+    [[self street] setText:[NSString stringWithFormat:@"%@ %d", _gasStation.street, _gasStation.houseNumber]];
+    
+    [[self city] setText:_gasStation.city];
+    
 //--------------------
     NSMutableArray* fuels = [NSMutableArray array];
 
