@@ -21,8 +21,8 @@
         cord.longitude = [[object objectForKey:@"Longitude"] doubleValue];
         
         self.coordinate = cord;
-        self.title = [object objectForKey:@"BusinessUnitName"];
-        self.subtitle = [object objectForKey:@"Name"];
+        self.title = [object objectForKey:@"Name"];
+        self.subtitle = [object objectForKey:@"BusinessUnitName"];
         
         id tmp = [object objectForKey:@"FuelTypes"];
         if ([tmp isKindOfClass:[NSArray class]])
@@ -42,16 +42,13 @@
         else
             _AdditionalServices = nil;
         
-        _promoText = [object objectForKey:@"Promo"];
-        if (_promoText == nil)
-            _promoText = @"";
+        _promoText = [self valueOrEmptyOf:[object objectForKey:@"Promo"]];
         
-        
-        _city = [object objectForKey:@"City"];
-        _street = [object objectForKey:@"Street"];
-        _houseNumber = [[object objectForKey:@"HouseNumber"] intValue];
+        _city = [self valueOrEmptyOf:[object objectForKey:@"City"]];
+        _street = [self valueOrEmptyOf:[object objectForKey:@"Street"]];
+        _houseNumber = [self valueOrEmptyOf:[object objectForKey:@"HouseNumber"]];
 
-        _brandImage = [object objectForKey:@"brandImage"];
+        _brandImage = [self valueOrEmptyOf:[object objectForKey:@"BranImage"]];
         
         int scale = [[UIScreen mainScreen] scale];
 
@@ -59,6 +56,14 @@
     }
     
 	return self;
+}
+
+-(NSString*) valueOrEmptyOf:(NSObject*)object
+{
+    if (object == nil || [object isKindOfClass:[NSNull class]])
+        return @"";
+    
+    return (NSString*)object;
 }
 
 @end

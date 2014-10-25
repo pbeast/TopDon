@@ -32,7 +32,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+   // [super viewWillAppear:animated];
 
     self.navigationController.navigationBarHidden = NO;
     
@@ -42,11 +42,11 @@
     [self.stationMapView setRegion:region animated:YES];
     
     [self.stationMapView addAnnotation:_gasStation];
-    
+//    [self.stationMapView selectAnnotation:_gasStation animated:NO];
   
     [[self promo] setText:_gasStation.promoText];
     
-    [[self street] setText:[NSString stringWithFormat:@"%@ %d", _gasStation.street, _gasStation.houseNumber]];
+    [[self street] setText:[NSString stringWithFormat:@"%@ %@", _gasStation.street, _gasStation.houseNumber]];
     
     [[self city] setText:_gasStation.city];
     

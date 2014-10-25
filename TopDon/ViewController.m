@@ -511,7 +511,8 @@
     
     NSDictionary *parameters = @{
                                  @"longitude" : [NSString stringWithFormat:@"%f", location.coordinate.longitude],
-                                 @"latitude" : [NSString stringWithFormat:@"%f", location.coordinate.latitude]
+                                 @"latitude" : [NSString stringWithFormat:@"%f", location.coordinate.latitude],
+                                 @"applicationPlatform":@"iOS"
                                  };
 
     NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] requestWithMethod:@"POST" URLString:serverUrl parameters:parameters error:nil];
@@ -524,10 +525,13 @@
                                              {
                                                  tmp = [tmp objectForKey:@"Data"];
                                                  
-                                                 baseLogoUrl = [tmp objectForKey:@"baseLogoUrl"];
-                                                 
+                                                 baseLogoUrl = [tmp objectForKey:@"BaseLogoUrl"];
+                                                 if (baseLogoUrl == nil || [baseLogoUrl isKindOfClass:[NSNull class]])
+                                                     baseLogoUrl = @"";
+
                                                  NSString* newsLine = [tmp objectForKey:@"NewsLine"];
                                                  if (newsLine != nil){
+                                                     newsLine = [@" " stringByAppendingString:newsLine];
                                                      [[self newsLine] setText:newsLine];
                                                      if ([[self newsLine] isPaused])
                                                          [[self newsLine] unpauseLabel];

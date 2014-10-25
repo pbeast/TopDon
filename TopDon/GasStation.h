@@ -19,7 +19,7 @@
 
 @property (copy, readonly) NSString* city;
 @property (copy, readonly) NSString* street;
-@property (readonly) int houseNumber;
+@property (copy, readonly) NSString* houseNumber;
 
 @property (copy, readonly) NSString* brandImage;
 
