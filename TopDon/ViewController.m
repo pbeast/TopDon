@@ -45,6 +45,8 @@
     
     BOOL shouldMoveMapOnLocationChange;
     NSString* baseLogoUrl;
+    
+    BOOL isFirstAppearence;
 }
 @end
 
@@ -100,16 +102,6 @@
     locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))
-    {
-        geoLocationIsWorking = NO;
-        [locationManager requestWhenInUseAuthorization];
-    }
-    else{
-        geoLocationIsWorking = YES;
-        [locationManager startUpdatingLocation];
-    }
     
     shouldMoveMapOnLocationChange = YES;
   
@@ -119,12 +111,28 @@
     
     [[self newsLine] setMarqueeType:MLContinuous];
     [[self newsLine] setBackgroundColor:[UIColor blackColor]];
+    [[self newsLine] setRate:55];
+    
+    isFirstAppearence = YES;
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
 
+    if (isFirstAppearence){
+        isFirstAppearence = NO;
+        
+        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))
+        {
+            geoLocationIsWorking = NO;
+            [locationManager requestWhenInUseAuthorization];
+        }
+        else{
+            geoLocationIsWorking = YES;
+            [locationManager startUpdatingLocation];
+        }
+    }
     self.navigationController.navigationBarHidden = YES;
 }
 
