@@ -24,9 +24,9 @@
                                     <constraint firstAttribute="height" constant="56" id="GYK-tI-WNk"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZGQ-az-WFH">
-                                <rect key="frame" x="123" y="32" width="75" height="30"/>
-                                <state key="normal" title="Профиль">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZGQ-az-WFH">
+                                <rect key="frame" x="146" y="38" width="29" height="29"/>
+                                <state key="normal" image="private_office">
                                     <color key="titleColor" white="0.97999999999999998" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -41,7 +41,7 @@
                                 </connections>
                             </mapView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Поиск" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6HZ-4F-yYx">
-                                <rect key="frame" x="210" y="33" width="100" height="30"/>
+                                <rect key="frame" x="210" y="38" width="100" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardAppearance="alert" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
@@ -65,7 +65,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xhj-Cs-Wxg" userLabel="Logo">
-                                <rect key="frame" x="0.0" y="26" width="125" height="55"/>
+                                <rect key="frame" x="0.0" y="25" width="125" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="vGk-cC-SBP"/>
                                     <constraint firstAttribute="width" constant="125" id="w6P-vC-V9T"/>
@@ -82,7 +82,7 @@
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="7te-Qx-pIW" secondAttribute="bottom" id="8YT-aC-CNB"/>
                             <constraint firstAttribute="width" secondItem="7te-Qx-pIW" secondAttribute="width" id="MSh-uP-BPw"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="1HR-ra-yir" secondAttribute="bottom" constant="20" id="PJN-6T-8hF"/>
-                            <constraint firstItem="xhj-Cs-Wxg" firstAttribute="top" secondItem="DYf-Ho-MJt" secondAttribute="top" constant="6" id="cDJ-DR-bG4"/>
+                            <constraint firstItem="xhj-Cs-Wxg" firstAttribute="top" secondItem="DYf-Ho-MJt" secondAttribute="top" constant="5" id="cDJ-DR-bG4"/>
                             <constraint firstItem="7te-Qx-pIW" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="gBg-Yx-mMP"/>
                             <constraint firstItem="DYf-Ho-MJt" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="mrf-2k-qQd"/>
                             <constraint firstItem="1HR-ra-yir" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="q1F-gi-4SC"/>
@@ -261,8 +261,8 @@
 Eam et erant malorum. Ea est vide dissentiunt. Vis iisque aperiri epicuri et, ius dicant facete ei, nam te dico porro. Sit ut quis vitae ceteros. Sed veniam dissentiet ne.
 
 Vitae ridens viderer no nec, nam te errem scripta patrioque. Ut copiosae consulatu vituperatoribus qui. Eam no eius lorem falli, amet alia ad vix. Id veniam scripta voluptatibus mel, cu stet graeci vivendum vix, duo ne postea possim scriptorem. At suas pericula eos.</string>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -379,6 +379,7 @@ Vitae ridens viderer no nec, nam te errem scripta patrioque. Ut copiosae consula
         <image name="header" width="320" height="56"/>
         <image name="highlightedLogo" width="256" height="55"/>
         <image name="logo" width="256" height="55"/>
+        <image name="private_office" width="29" height="29"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

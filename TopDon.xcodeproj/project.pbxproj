@@ -418,7 +418,7 @@
 				GCC_PREFIX_HEADER = "TopDon/TopDon-Prefix.pch";
 				INFOPLIST_FILE = "TopDon/TopDon-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "38e9dd8f-81be-4344-8417-a27f4875e529";
+				PROVISIONING_PROFILE = "b65ddd19-17c5-47de-bcb7-08bd6a7c8ec8";
 				USER_HEADER_SEARCH_PATHS = "/3rdParties/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -436,7 +436,7 @@
 				GCC_PREFIX_HEADER = "TopDon/TopDon-Prefix.pch";
 				INFOPLIST_FILE = "TopDon/TopDon-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "38e9dd8f-81be-4344-8417-a27f4875e529";
+				PROVISIONING_PROFILE = "b65ddd19-17c5-47de-bcb7-08bd6a7c8ec8";
 				USER_HEADER_SEARCH_PATHS = "/3rdParties/**";
 				WRAPPER_EXTENSION = app;
 			};
