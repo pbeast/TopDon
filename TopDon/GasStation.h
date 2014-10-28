@@ -23,4 +23,6 @@
 
 @property (copy, readonly) NSString* brandImage;
 
+@property (readonly) int BusinessUnitInternalKey;
+
 @end

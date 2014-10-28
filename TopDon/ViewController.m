@@ -397,14 +397,17 @@
     static NSString *identifier = @"GasStation";
     if ([annotation isKindOfClass:[GasStation class]]) {
         
-        MKAnnotationView *annotationView = (MKAnnotationView *) [_mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
-        if (annotationView == nil) {
-            annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+        GasStation *gasStation = (GasStation*)annotation;
+        NSString *stationReusableIdentifier = [NSString stringWithFormat:@"%@-%d", identifier, gasStation.BusinessUnitInternalKey];
+        
+        MKAnnotationView *annotationView = (MKAnnotationView *) [_mapView dequeueReusableAnnotationViewWithIdentifier:stationReusableIdentifier];
+        
+        if (annotationView == nil)
+        {
+            annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:stationReusableIdentifier];
             annotationView.enabled = YES;
             annotationView.canShowCallout = YES;
             
-            GasStation *gasStation = (GasStation*)annotation;
-
             [annotationView sd_setImageWithURL:[NSURL URLWithString:gasStation.brandImage] placeholderImage:[UIImage imageNamed:@"fuelPin.png"] options:SDWebImageRefreshCached];
             
             
