@@ -532,7 +532,7 @@
                                          {
                                              NSDictionary* tmp = [((NSDictionary*)responseObject) objectForKey:@"d"];
                                              
-                                             if ([tmp objectForKey:@"status"] == 0)
+                                             if ([[tmp objectForKey:@"Status"] intValue] == 0)
                                              {
                                                  tmp = [tmp objectForKey:@"Data"];
                                                  
@@ -569,6 +569,11 @@
                                                  int radius = [[tmp objectForKey:@"Radius"] intValue];
                                                  MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, radius, radius);
                                                  [self.mapView setRegion:region animated:YES];
+                                             }
+                                             else
+                                             {
+                                                 UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"TOPDON" message:[NSString stringWithFormat:@"Ошибка сервера: %@", [tmp objectForKey:@"Messagev"]] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                                 [av show];
                                              }
                                          }
                                         failure:^(AFHTTPRequestOperation *operation, NSError *error)
