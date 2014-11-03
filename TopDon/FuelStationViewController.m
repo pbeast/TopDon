@@ -13,6 +13,8 @@
 @interface FuelStationViewController ()
 {
     NSMutableArray *navigators;
+    BOOL isHtmlLoaded;
+    int height;
 }
 @end
 
@@ -28,6 +30,8 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     self.stationMapView.delegate = self;
+    
+    isHtmlLoaded = NO;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -44,7 +48,12 @@
     [self.stationMapView addAnnotation:_gasStation];
 //    [self.stationMapView selectAnnotation:_gasStation animated:NO];
   
-    [[self promo] setText:_gasStation.promoText];
+    
+    NSString* content = [NSString stringWithFormat:@"<html><body style='margin-top: 0px;margin-bottom: 0px;'><div id='foo'>%@</div></body></html>", _gasStation.promoText];
+    
+    [[self promo] loadHTMLString:content baseURL:[NSURL URLWithString:@""]];
+//    [[self promo] setText:_gasStation.promoText];
+    [[[self promo] scrollView] setScrollEnabled:NO];
     
     [[self street] setText:[NSString stringWithFormat:@"%@ %@", _gasStation.street, _gasStation.houseNumber]];
     
@@ -112,6 +121,15 @@
     return section < 4 && section > 1 ? 7 : 0;
 }
 
+-(void)webViewDidFinishLoad:(UIWebView *)webView{
+    NSString *h = [[self promo] stringByEvaluatingJavaScriptFromString:@"document.getElementById(\"foo\").offsetHeight;"];
+    
+    height = [h intValue];
+    isHtmlLoaded = YES;
+    
+    [[self tableView] reloadData];
+}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSArray *tmp = @[@182, @41, @103, @103, @103, @92];
@@ -141,7 +159,10 @@
     }
     
     if( indexPath.section == 5){
-        return [[[self promo] text] boundingRectWithSize:CGSizeMake(self.promo.frame.size.width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{ NSFontAttributeName :[[self promo] font] } context:nil].size.height + 20;
+        if (isHtmlLoaded)
+            return height + 12;
+        
+        return 102;
     }
 
     return [[tmp objectAtIndex:indexPath.section] integerValue];

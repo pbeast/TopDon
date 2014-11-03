@@ -21,8 +21,8 @@
         cord.longitude = [[object objectForKey:@"Longitude"] doubleValue];
         
         self.coordinate = cord;
-        self.title = [object objectForKey:@"Name"];
-        self.subtitle = [object objectForKey:@"BusinessUnitName"];
+        self.title = [object objectForKey:@"BusinessUnitName"];
+        self.subtitle = [object objectForKey:@"Name"];
         
         id tmp = [object objectForKey:@"FuelTypes"];
         if ([tmp isKindOfClass:[NSArray class]])
@@ -44,6 +44,8 @@
         
         _promoText = [self valueOrEmptyOf:[object objectForKey:@"Promo"]];
         
+        NSString* newsSuffix = [_promoText isEqualToString:@""] ? @"" : @"-news";
+        
         _city = [self valueOrEmptyOf:[object objectForKey:@"City"]];
         _street = [self valueOrEmptyOf:[object objectForKey:@"Street"]];
         _houseNumber = [self valueOrEmptyOf:[object objectForKey:@"HouseNumber"]];
@@ -52,7 +54,7 @@
         
         int scale = [[UIScreen mainScreen] scale];
 
-        _brandImage = [NSString stringWithFormat:@"%@%@@%dx.png", baseLogoUrl, _brandImage, scale];
+        _brandImage = [NSString stringWithFormat:@"%@%@%@@%dx.png", baseLogoUrl, _brandImage, newsSuffix, scale];
         
         _BusinessUnitInternalKey = [[object objectForKey:@"BusinessUnitInternalKey"] intValue];
     }

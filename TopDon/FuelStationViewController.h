@@ -10,7 +10,7 @@
 #import "GasStation.h"
 #import "DWTagList.h"
 
-@interface FuelStationViewController : UITableViewController<MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
+@interface FuelStationViewController : UITableViewController<MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate,UIWebViewDelegate>
 
 @property (assign, nonatomic) GasStation* gasStation;
 
@@ -21,7 +21,7 @@
 @property (weak, nonatomic) IBOutlet DWTagList *servicesView;
 @property (weak, nonatomic) IBOutlet DWTagList *additionalServices;
 
-@property (weak, nonatomic) IBOutlet UILabel *promo;
+@property (weak, nonatomic) IBOutlet UIWebView *promo;
 @property (weak, nonatomic) IBOutlet UILabel *street;
 @property (weak, nonatomic) IBOutlet UILabel *city;
 @end

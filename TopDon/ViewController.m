@@ -133,6 +133,7 @@
             [locationManager startUpdatingLocation];
         }
     }
+    
     self.navigationController.navigationBarHidden = YES;
 }
 
@@ -508,13 +509,13 @@
 -(void)loadStationsAround:(CLLocation *)location
 {
     
-    if (![self connected])
-    {
-        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"TOPDON" message:@"Отсутствует подключение к сети интернет. Подключение к сети интернет требуется для правильного функционирования аппликации." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [av show];
-        
-        return;
-    }
+//    if (![self connected])
+//    {
+//        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"TOPDON" message:@"Отсутствует подключение к сети интернет. Подключение к сети интернет требуется для правильного функционирования аппликации." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//        [av show];
+//        
+//        return;
+//    }
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
@@ -523,7 +524,7 @@
     NSDictionary *parameters = @{
                                  @"longitude" : [NSString stringWithFormat:@"%f", location.coordinate.longitude],
                                  @"latitude" : [NSString stringWithFormat:@"%f", location.coordinate.latitude],
-                                 @"applicationPlatform":@"iOS"
+                                 @"applicationPlatform":@"browser" //iOS
                                  };
 
     NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] requestWithMethod:@"POST" URLString:serverUrl parameters:parameters error:nil];

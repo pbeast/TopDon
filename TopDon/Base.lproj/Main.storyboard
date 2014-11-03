@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="5Cz-pm-GIz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="5Cz-pm-GIz">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -254,23 +255,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="102"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zKA-nJ-HNL">
-                                                    <rect key="frame" x="4" y="-6" width="312" height="112"/>
-                                                    <string key="text">Lorem ipsum dolor sit amet, no labitur inermis appellantur quo. Augue fierent iudicabit no eum, id vel mutat accumsan. Nam purto noster perfecto cu, vocibus pertinacia et mei, ne stet voluptaria eum. Aliquid molestiae conclusionemque ei eum, te diam interesset vim, viris delenit ex nam.
-
-Eam et erant malorum. Ea est vide dissentiunt. Vis iisque aperiri epicuri et, ius dicant facete ei, nam te dico porro. Sit ut quis vitae ceteros. Sed veniam dissentiet ne.
-
-Vitae ridens viderer no nec, nam te errem scripta patrioque. Ut copiosae consulatu vituperatoribus qui. Eam no eius lorem falli, amet alia ad vix. Id veniam scripta voluptatibus mel, cu stet graeci vivendum vix, duo ne postea possim scriptorem. At suas pericula eos.</string>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <color key="textColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ee-xe-5gS">
+                                                    <rect key="frame" x="8" y="8" width="304" height="87"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="tEC-ce-5mm" id="daD-yW-HOJ"/>
+                                                    </connections>
+                                                </webView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="zKA-nJ-HNL" firstAttribute="leading" secondItem="PHf-9V-raA" secondAttribute="leading" constant="4" id="1aC-8D-XPD"/>
-                                                <constraint firstItem="zKA-nJ-HNL" firstAttribute="bottom" secondItem="PHf-9V-raA" secondAttribute="bottom" constant="4" id="O3l-nA-zp7"/>
-                                                <constraint firstItem="zKA-nJ-HNL" firstAttribute="trailing" secondItem="PHf-9V-raA" secondAttribute="trailing" constant="-4" id="Okl-gk-bVY"/>
-                                                <constraint firstItem="zKA-nJ-HNL" firstAttribute="top" secondItem="PHf-9V-raA" secondAttribute="top" constant="-6" id="WaC-PG-bMI"/>
+                                                <constraint firstItem="7ee-xe-5gS" firstAttribute="leading" secondItem="PHf-9V-raA" secondAttribute="leading" constant="8" id="2hu-9P-N0x"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="7ee-xe-5gS" secondAttribute="bottom" constant="-1" id="R37-Zo-In0"/>
+                                                <constraint firstItem="7ee-xe-5gS" firstAttribute="top" secondItem="PHf-9V-raA" secondAttribute="top" constant="8" id="wnA-gk-FJ7"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="7ee-xe-5gS" secondAttribute="trailing" id="z8r-CO-Hbh"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -288,7 +285,7 @@ Vitae ridens viderer no nec, nam te errem scripta patrioque. Ut copiosae consula
                         <outlet property="additionalServices" destination="par-GX-OCa" id="Sc8-BZ-dRs"/>
                         <outlet property="city" destination="XDJ-K0-fRo" id="TeW-X4-3aQ"/>
                         <outlet property="fuelTypesView" destination="fRT-Ro-u82" id="gGV-oe-3v2"/>
-                        <outlet property="promo" destination="zKA-nJ-HNL" id="Glf-y4-uPk"/>
+                        <outlet property="promo" destination="7ee-xe-5gS" id="co0-Wj-2f6"/>
                         <outlet property="servicesView" destination="cSC-2f-sLP" id="oY1-EU-Hsv"/>
                         <outlet property="stationMapView" destination="ny3-2f-zxv" id="RF6-Sr-UdN"/>
                         <outlet property="street" destination="CW5-ob-3PJ" id="qtK-Bw-Cz0"/>
@@ -296,7 +293,7 @@ Vitae ridens viderer no nec, nam te errem scripta patrioque. Ut copiosae consula
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Drm-0I-Wgp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="591" y="649"/>
+            <point key="canvasLocation" x="591" y="645"/>
         </scene>
         <!--Профиль-->
         <scene sceneID="Tw1-ar-pG7">
