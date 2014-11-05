@@ -25,4 +25,6 @@
 
 @property (readonly) int BusinessUnitInternalKey;
 
+@property (readonly) BOOL hasNews;
+
 @end

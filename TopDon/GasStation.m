@@ -44,7 +44,9 @@
         
         _promoText = [self valueOrEmptyOf:[object objectForKey:@"Promo"]];
         
-        NSString* newsSuffix = [_promoText isEqualToString:@""] ? @"" : @"-news";
+        _hasNews = ![_promoText isEqualToString:@""];
+        
+        NSString* newsSuffix = _hasNews ? @"-news" : @"";
         
         _city = [self valueOrEmptyOf:[object objectForKey:@"City"]];
         _street = [self valueOrEmptyOf:[object objectForKey:@"Street"]];

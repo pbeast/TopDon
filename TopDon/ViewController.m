@@ -47,6 +47,8 @@
     NSString* baseLogoUrl;
     
     BOOL isFirstAppearence;
+    
+    NSString* serverUrl;
 }
 @end
 
@@ -81,6 +83,10 @@
 {
     [super viewDidLoad];
 
+    serverUrl = @"http://80.254.99.158/API/TradePointMaintanance.asmx/LocateAround";
+    //serverUrl = @"http://topdonkabinet.ru/API/TradePointMaintanance.asmx/LocateAround";
+
+    
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     
     allowedFuels = [NSMutableArray array];
@@ -399,7 +405,8 @@
     if ([annotation isKindOfClass:[GasStation class]]) {
         
         GasStation *gasStation = (GasStation*)annotation;
-        NSString *stationReusableIdentifier = [NSString stringWithFormat:@"%@-%d", identifier, gasStation.BusinessUnitInternalKey];
+        
+        NSString *stationReusableIdentifier = [NSString stringWithFormat:@"%@-%d%@", identifier, gasStation.BusinessUnitInternalKey, gasStation.hasNews ? @"-news" : @""];
         
         MKAnnotationView *annotationView = (MKAnnotationView *) [_mapView dequeueReusableAnnotationViewWithIdentifier:stationReusableIdentifier];
         
@@ -519,8 +526,6 @@
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
-    NSString* serverUrl = @"http://80.254.99.158/API/TradePointMaintanance.asmx/LocateAround";
-    
     NSDictionary *parameters = @{
                                  @"longitude" : [NSString stringWithFormat:@"%f", location.coordinate.longitude],
                                  @"latitude" : [NSString stringWithFormat:@"%f", location.coordinate.latitude],
@@ -542,7 +547,7 @@
                                                      baseLogoUrl = @"";
 
                                                  NSString* newsLine = [tmp objectForKey:@"NewsLine"];
-                                                 if (newsLine != nil){
+                                                 if (newsLine != nil && ![newsLine isKindOfClass:[NSNull class]]){
                                                      newsLine = [@" " stringByAppendingString:newsLine];
                                                      [[self newsLine] setText:newsLine];
                                                      if ([[self newsLine] isPaused])
