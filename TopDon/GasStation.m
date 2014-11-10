@@ -56,7 +56,7 @@
         
         int scale = [[UIScreen mainScreen] scale];
 
-        _brandImage = [NSString stringWithFormat:@"%@%@%@@%dx.png", baseLogoUrl, _brandImage, newsSuffix, scale];
+        _brandImage = [NSString stringWithFormat:@"%@%@%@%@.png", baseLogoUrl, _brandImage, newsSuffix, scale == 1 ? @"" : [NSString stringWithFormat:@"@%dx", scale]];
         
         _BusinessUnitInternalKey = [[object objectForKey:@"BusinessUnitInternalKey"] intValue];
     }
