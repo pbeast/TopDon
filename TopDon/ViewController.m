@@ -545,6 +545,10 @@
                                                  baseLogoUrl = [tmp objectForKey:@"BaseLogoUrl"];
                                                  if (baseLogoUrl == nil || [baseLogoUrl isKindOfClass:[NSNull class]])
                                                      baseLogoUrl = @"";
+                                                 
+                                                 NSString* baseAppUrl = [tmp objectForKey:@"BaseAppUrl"];
+                                                 if (baseAppUrl == nil || [baseAppUrl isKindOfClass:[NSNull class]])
+                                                     baseAppUrl = @"";
 
                                                  NSString* newsLine = [tmp objectForKey:@"NewsLine"];
                                                  if (newsLine != nil && ![newsLine isKindOfClass:[NSNull class]]){
@@ -565,7 +569,7 @@
                                                  foundGasStations = [NSMutableArray array];
                                                  for (NSDictionary * station in stations)
                                                  {
-                                                     GasStation *gasStation = [[GasStation alloc] initWithServerObject:station andBaseLogoUrl:baseLogoUrl];
+                                                     GasStation *gasStation = [[GasStation alloc] initWithServerObject:station BaseLogoUrl:baseLogoUrl AndBaseAppUrl:baseAppUrl];
                                                      
                                                      [foundGasStations addObject:gasStation];
                                                  }

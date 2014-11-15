@@ -8,10 +8,15 @@
 
 #import "GasStation.h"
 
+
+@interface GasStation()
+
+@end
+
 @implementation GasStation
 
 
--(id)initWithServerObject:(NSDictionary*)object andBaseLogoUrl:(NSString*)baseLogoUrl
+-(id)initWithServerObject:(NSDictionary*)object BaseLogoUrl:(NSString*)baseLogoUrl AndBaseAppUrl:(NSString*)baseAppUrl
 {
 	self = [super init];
 	if (self != nil) {
@@ -59,6 +64,8 @@
         _brandImage = [NSString stringWithFormat:@"%@%@%@%@.png", baseLogoUrl, _brandImage, newsSuffix, scale == 1 ? @"" : [NSString stringWithFormat:@"@%dx", scale]];
         
         _BusinessUnitInternalKey = [[object objectForKey:@"BusinessUnitInternalKey"] intValue];
+        
+        _baseWebUrl = baseAppUrl;
     }
     
 	return self;

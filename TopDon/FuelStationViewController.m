@@ -49,7 +49,7 @@
 //    [self.stationMapView selectAnnotation:_gasStation animated:NO];
   
     
-    NSString* content = [NSString stringWithFormat:@"<html><body style='margin-top: 0px;margin-bottom: 0px;'><div id='foo'>%@</div></body></html>", _gasStation.promoText];
+    NSString* content = [NSString stringWithFormat:@"<html><head><base href='%@'></head><body style='margin-top: 0px;margin-bottom: 0px;'><div id='foo'>%@</div></body></html>", _gasStation.baseWebUrl, _gasStation.promoText];
     
     [[self promo] loadHTMLString:content baseURL:[NSURL URLWithString:@""]];
 //    [[self promo] setText:_gasStation.promoText];
