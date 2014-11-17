@@ -83,8 +83,8 @@
 {
     [super viewDidLoad];
 
-    serverUrl = @"http://80.254.99.158/API/TradePointMaintanance.asmx/LocateAround";
-    //serverUrl = @"http://topdonkabinet.ru/API/TradePointMaintanance.asmx/LocateAround";
+    //serverUrl = @"http://80.254.99.158/API/TradePointMaintanance.asmx/LocateAround";
+    serverUrl = @"http://topdonkabinet.ru/API/TradePointMaintanance.asmx/LocateAround";
 
     
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
